@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
-
+pragma solidity 0.7.0;
 
 /**
  * @dev Contract module which allows children to implement an emergency stop
@@ -27,7 +26,7 @@ contract Pausable {
     /**
      * @dev Initializes the contract in unpaused state.
      */
-    constructor () internal {
+    constructor () {
         _paused = false;
     }
 

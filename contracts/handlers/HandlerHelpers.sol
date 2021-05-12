@@ -1,4 +1,4 @@
-pragma solidity 0.6.4;
+pragma solidity 0.7.0;
 
 import "../interfaces/IERCHandler.sol";
 
