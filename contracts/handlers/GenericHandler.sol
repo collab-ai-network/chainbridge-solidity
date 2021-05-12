@@ -1,4 +1,4 @@
-pragma solidity 0.6.4;
+pragma solidity 0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "../interfaces/IGenericHandler.sol";
@@ -17,6 +17,8 @@ contract GenericHandler is IGenericHandler {
         bytes32 _resourceID;
         bytes   _metaData;
     }
+
+    event DebugDeposit(uint256 len, bytes metadata, bytes callData);
 
     // depositNonce => Deposit Record
     mapping (uint8 => mapping(uint64 => DepositRecord)) public _depositRecords;
@@ -139,33 +141,19 @@ contract GenericHandler is IGenericHandler {
         {metaData} is expected to consist of needed function arguments.
      */
     function deposit(bytes32 resourceID, uint8 destinationChainID, uint64 depositNonce, address depositer, bytes calldata data) external onlyBridge {
-        bytes32      lenMetadata;
+        uint256      lenMetadata;
         bytes memory metadata;
 
-        assembly {
-            // Load length of metadata from data + 64
-            lenMetadata  := calldataload(0xC4)
-            // Load free memory pointer
-            metadata := mload(0x40)
-
-            mstore(0x40, add(0x20, add(metadata, lenMetadata)))
-
-            // func sig (4) + destinationChainId (padded to 32) + depositNonce (32) + depositor (32) +
-            // bytes length (32) + resourceId (32) + length (32) = 0xC4
-
-            calldatacopy(
-                metadata, // copy to metadata
-                0xC4, // copy from calldata after metadata length declaration @0xC4
-                sub(calldatasize(), 0xC4)      // copy size (calldatasize - (0xC4 + the space metaData takes up))
-            )
-        }
+        lenMetadata = abi.decode(data, (uint256));
+        metadata = bytes(data[32:32 + lenMetadata]);
 
         address contractAddress = _resourceIDToContractAddress[resourceID];
         require(_contractWhitelist[contractAddress], "provided contractAddress is not whitelisted");
 
         bytes4 sig = _contractAddressToDepositFunctionSignature[contractAddress];
         if (sig != bytes4(0)) {
-            bytes memory callData = abi.encodePacked(sig, metadata);
+            bytes memory callData = abi.encodeWithSelector(sig, metadata);
+            emit DebugDeposit(lenMetadata, metadata, callData);
             (bool success,) = contractAddress.call(callData);
             require(success, "delegatecall to contractAddress failed");
         }
@@ -189,30 +177,18 @@ contract GenericHandler is IGenericHandler {
         {metaData} is expected to consist of needed function arguments.
      */
     function executeProposal(bytes32 resourceID, bytes calldata data) external onlyBridge {
+        uint256      lenMetadata;
         bytes memory metaData;
-        assembly {
 
-            // metadata has variable length
-            // load free memory pointer to store metadata
-            metaData := mload(0x40)
-            // first 32 bytes of variable length in storage refer to length
-            let lenMeta := calldataload(0x64)
-            mstore(0x40, add(0x60, add(metaData, lenMeta)))
-
-            // in the calldata, metadata is stored @0x64 after accounting for function signature, and 2 previous params
-            calldatacopy(
-                metaData,                     // copy to metaData
-                0x64,                        // copy from calldata after data length declaration at 0x64
-                sub(calldatasize(), 0x64)   // copy size (calldatasize - 0x64)
-            )
-        }
+        lenMetadata = abi.decode(data, (uint256));
+        metaData = bytes(data[32:32 + lenMetadata]);
 
         address contractAddress = _resourceIDToContractAddress[resourceID];
         require(_contractWhitelist[contractAddress], "provided contractAddress is not whitelisted");
 
         bytes4 sig = _contractAddressToExecuteFunctionSignature[contractAddress];
         if (sig != bytes4(0)) {
-            bytes memory callData = abi.encodePacked(sig, metaData);
+            bytes memory callData = abi.encodeWithSelector(sig, metaData);
             (bool success,) = contractAddress.call(callData);
             require(success, "delegatecall to contractAddress failed");
         }
