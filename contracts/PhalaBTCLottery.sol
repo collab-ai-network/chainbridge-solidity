@@ -1,7 +1,12 @@
-pragma solidity 0.6.4;
+pragma solidity 0.7.0;
 pragma experimental ABIEncoderV2;
 
+import "./lib/BytesLib.sol";
+
 contract PhalaBTCLottery {
+
+	using BytesLib for bytes;
+
     address nftAdmin;
     address genericHandler;
     mapping(uint32 => mapping(uint32 => bool)) public openedBox;
@@ -9,10 +14,8 @@ contract PhalaBTCLottery {
     mapping(uint32 => mapping(uint32 => bytes)) public txStorage;
 
     event NewRound(uint32 roundId, uint32 totalCount, uint32 winnerCount);
-    event OpenLottery(uint32 roundId, uint32 tokenId, string btcAddr);
+    event OpenLottery(uint32 roundId, uint32 tokenId, bytes btcAddr);
     event SignedTxStored(uint32 roundId, uint32 tokenId, bytes signedTx);
-    event DebugDeposit(bytes metadata);
-    event DebugProposal(bytes metadata);
 
     modifier onlyNFT() {
         require(
@@ -43,47 +46,36 @@ contract PhalaBTCLottery {
         genericHandler = _genericHandler;
     }
 
-    /**
-        @notice As a hook function when deposit() was invoked in generic handler contract.
-        @notice Data passed into the function should be constructed as follows:
-        op                                     uint8      bytes  0  - 1
+	/**
+	@notice As a hook function when deposit() was invoked in generic handler contract.
+	@notice Data passed into the function should be constructed as follows:
+		op								uint8	bytes	0  - 1
 		if (op == 0):
-        	roundId                            uint32     bytes  1 - 5
-			totalCount                         uint32     bytes  5 - 9
-			winnerCount                        uint32     bytes  9 - END
+			roundId						uint32	bytes	1 - 5
+			totalCount					uint32	bytes	5 - 9
+			winnerCount					uint32	bytes	9 - END
 		else if (op == 1):
-		    roundId                            uint32     bytes  1 - 5
-			tokenId                            uint32     bytes  5 - 9
-			btcAddress                         bytes      bytes  9 - END
+			roundId						uint32	bytes	1 - 5
+			tokenId						uint32	bytes	5 - 9
+			btcAddress					bytes	bytes	9 - END
 		else
-		    invalid
-     */
-    function depositHandler(bytes calldata data) external {
-        bytes memory metaData;
-        assembly {
-            metaData := mload(0x40)
-            let lenMeta := calldataload(0x44)
-            mstore(0x40, add(0x60, add(metaData, lenMeta)))
-
-            calldatacopy(metaData, 0x44, lenMeta)
+			invalid
+	*/
+    function depositHandler(bytes memory data) public {
+		uint8 op = data.toUint8(0);
+        if (op == 0) {
+			uint32 roundId = data.toUint32(1);
+			uint32 totalCount = data.toUint32(5);
+			uint32 winnerCount = data.toUint32(9);
+        	_newRound(roundId, totalCount, winnerCount);
+        } else if (op == 1) {
+			uint32 roundId = data.toUint32(1);
+			uint32 tokenId = data.toUint32(5);
+			bytes memory btcAddress = data.slice(9, 32);
+        	_open(roundId, tokenId, btcAddress);
+        } else {
+        	// do nothing
         }
-
-        emit DebugDeposit(metaData);
-
-        // uint8 op = abi.decode(data[:1], (uint8));
-        // if (op == 0) {
-        // 	uint32 roundId = abi.decode(data[1:5], (uint32));
-        // 	uint32 totalCount = abi.decode(data[5:9], (uint32));
-        // 	uint32 winnerCount = abi.decode(data[9:], (uint32));
-        // 	_newRound(roundId, totalCount, winnerCount);
-        // } else if (op == 1) {
-        // 	uint32 roundId = abi.decode(data[1:5], (uint32));
-        // 	uint32 tokenId = abi.decode(data[5:9], (uint32));
-        // 	string memory btcAddress = abi.decode(data[9:], (string));
-        // 	_open(roundId, tokenId, btcAddress);
-        // } else {
-        // 	// do nothing
-        // }
     }
 
     function isLotteryOpened(uint32 roundId, uint32 tokenId)
@@ -94,33 +86,24 @@ contract PhalaBTCLottery {
         return openedBox[roundId][tokenId];
     }
 
-    /**
-        @notice As a hook function when executeProposal() was invoked in generic handler contract.
-        @notice Data passed into the function should be constructed as follows:
-		roundId                            uint32     bytes  0 - 4
-		tokenId                            uint32     bytes  4 - 8
-		signedTx                           bytes      bytes  8 - END
-     */
-    function recordSignedBTCTx(bytes calldata data)
-        external
+	/**
+	@notice As a hook function when executeProposal() was invoked in generic handler contract.
+	@notice Data passed into the function should be constructed as follows:
+		roundId								uint32	bytes	0 - 4
+		tokenId								uint32	bytes	4 - 8
+		signedTxLen							uint3	bytes	8 - 12
+		signedTx							bytes	bytes	12 - END
+	*/
+    function recordSignedBTCTx(bytes memory data)
+        public
         onlyGenericHandler
     {
-        bytes memory metaData;
-        assembly {
-            metaData := mload(0x40)
-            let lenMeta := calldataload(0x44)
-            mstore(0x40, add(0x60, add(metaData, lenMeta)))
+		uint32 roundId = data.toUint32(0);
+		uint32 tokenId = data.toUint32(4);
+		uint32 len = data.toUint32(8);
+		bytes memory signedTx = data.slice(12, len);
 
-            calldatacopy(metaData, 0x44, lenMeta)
-        }
-
-        emit DebugProposal(metaData);
-
-        // uint32 roundId = abi.decode(data[:4], (uint32));
-        // uint32 tokenId = abi.decode(data[4:8], (uint32));
-        // bytes memory signedTx = abi.decode(data[8:], (bytes));
-
-        // _recordSignedBTCTx(roundId, tokenId, signedTx);
+        _recordSignedBTCTx(roundId, tokenId, signedTx);
     }
 
     function _newRound(
@@ -134,7 +117,7 @@ contract PhalaBTCLottery {
     function _open(
         uint32 roundId,
         uint32 tokenId,
-        string memory btcAddress
+        bytes memory btcAddress
     ) private {
         require(
             !openedBox[roundId][tokenId],
