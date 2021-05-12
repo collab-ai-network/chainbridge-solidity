@@ -32,3 +32,7 @@ deploy:
 bindings: compile
 	@echo " > \033[32mCreating go bindings for ethereum contracts... \033[0m "
 	./scripts/create_bindings.sh
+
+bindings-withoutcompile:
+	@echo " > \033[32mCreating go bindings for ethereum contracts... \033[0m "
+	./scripts/create_bindings.sh
