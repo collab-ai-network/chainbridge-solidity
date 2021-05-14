@@ -14,7 +14,7 @@ contract PhalaBTCLottery {
     mapping(uint32 => mapping(uint32 => bytes)) public txStorage;
 
     event NewRound(uint32 roundId, uint32 totalCount, uint32 winnerCount);
-    event OpenLottery(uint32 roundId, uint32 tokenId, bytes btcAddr);
+    event OpenLottery(uint32 roundId, uint32 tokenId, string btcAddr);
     event SignedTxStored(uint32 roundId, uint32 tokenId, bytes signedTx);
 
     modifier onlyNFT() {
@@ -57,7 +57,8 @@ contract PhalaBTCLottery {
 		else if (op == 1):
 			roundId						uint32	bytes	1 - 5
 			tokenId						uint32	bytes	5 - 9
-			btcAddress					bytes	bytes	9 - END
+            btcAddressLen				uint32	bytes	9 - 13
+			btcAddress					bytes	bytes	13 - END
 		else
 			invalid
 	*/
@@ -71,7 +72,8 @@ contract PhalaBTCLottery {
         } else if (op == 1) {
 			uint32 roundId = data.toUint32(1);
 			uint32 tokenId = data.toUint32(5);
-			bytes memory btcAddress = data.slice(9, 32);
+            uint32 len = data.toUint32(9);
+			string memory btcAddress = string(data.slice(13, len));
         	_open(roundId, tokenId, btcAddress);
         } else {
         	// do nothing
@@ -117,7 +119,7 @@ contract PhalaBTCLottery {
     function _open(
         uint32 roundId,
         uint32 tokenId,
-        bytes memory btcAddress
+        string memory btcAddress
     ) private {
         require(
             !openedBox[roundId][tokenId],
