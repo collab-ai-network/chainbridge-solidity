@@ -39,7 +39,6 @@ contract PhalaBTCLottery {
 
     constructor(
         address _nftContract,
-        address _bridge,
         address _genericHandler
     ) public {
         nftAdmin = _nftContract;
