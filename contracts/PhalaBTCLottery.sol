@@ -19,10 +19,6 @@ contract PhalaBTCLottery {
 
     modifier onlyNFTAdmin() {
         require(
-            msg.sender == genericHandler,
-            "Permission Denied: Message Sender should be GenericHandler contract"
-        );
-        require(
             tx.origin == nftAdmin,
             "Permission Denied: Tx Origin should be NFT contract"
         );
@@ -43,6 +39,11 @@ contract PhalaBTCLottery {
     ) public {
         nftAdmin = _nftAdmin;
         genericHandler = _genericHandler;
+    }
+
+    function setNFTAdmin(address _nftAdmin) public onlyNFTAdmin {
+        require(_nftAdmin != address(0), "Invalid NFT admin address");
+        nftAdmin = _nftAdmin;
     }
 
 	/**
