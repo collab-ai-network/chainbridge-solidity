@@ -17,7 +17,7 @@ contract PhalaBTCLottery {
     event OpenLottery(uint32 roundId, uint32 tokenId, string btcAddr);
     event SignedTxStored(uint32 roundId, uint32 tokenId, bytes signedTx);
 
-    modifier onlyNFT() {
+    modifier onlyNFTAdmin() {
         require(
             msg.sender == genericHandler,
             "Permission Denied: Message Sender should be GenericHandler contract"
@@ -38,10 +38,10 @@ contract PhalaBTCLottery {
     }
 
     constructor(
-        address _nftContract,
+        address _nftAdmin,
         address _genericHandler
     ) public {
-        nftAdmin = _nftContract;
+        nftAdmin = _nftAdmin;
         genericHandler = _genericHandler;
     }
 
@@ -111,7 +111,7 @@ contract PhalaBTCLottery {
         uint32 roundId,
         uint32 totalCount,
         uint32 winnerCount
-    ) private onlyNFT {
+    ) private onlyNFTAdmin {
         emit NewRound(roundId, totalCount, winnerCount);
     }
 
