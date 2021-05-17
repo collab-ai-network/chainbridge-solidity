@@ -7,9 +7,9 @@ contract PhalaBTCLottery {
 
 	using BytesLib for bytes;
 
-    address nftAdmin;
-    address genericHandler;
-    address owner;
+    address public nftAdmin;
+    address public genericHandler;
+    address public owner;
     mapping(uint32 => mapping(uint32 => bool)) public openedBox;
     mapping(uint32 => mapping(uint32 => bool)) public storedTx;
     mapping(uint32 => mapping(uint32 => bytes)) public txStorage;
