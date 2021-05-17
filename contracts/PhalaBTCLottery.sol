@@ -9,6 +9,7 @@ contract PhalaBTCLottery {
 
     address nftAdmin;
     address genericHandler;
+    address owner;
     mapping(uint32 => mapping(uint32 => bool)) public openedBox;
     mapping(uint32 => mapping(uint32 => bool)) public storedTx;
     mapping(uint32 => mapping(uint32 => bytes)) public txStorage;
@@ -19,7 +20,7 @@ contract PhalaBTCLottery {
 
     modifier onlyNFTAdmin() {
         require(
-            tx.origin == nftAdmin,
+            nftAdmin != address(0) && tx.origin == nftAdmin,
             "Permission Denied: Tx Origin should be NFT contract"
         );
         _;
@@ -33,17 +34,30 @@ contract PhalaBTCLottery {
         _;
     }
 
-    constructor(
-        address _nftAdmin,
-        address _genericHandler
-    ) public {
-        nftAdmin = _nftAdmin;
-        genericHandler = _genericHandler;
+        modifier onlyOwner() {
+        require(
+            msg.sender == owner,
+            "Permission Denied: Message Sender should be owner of contract"
+        );
+        _;
     }
 
-    function setNFTAdmin(address _nftAdmin) public onlyNFTAdmin {
+    constructor(
+        address _genericHandler
+    ) public {
+        nftAdmin = address(0);
+        genericHandler = _genericHandler;
+        owner = msg.sender;
+    }
+
+    function setNFTAdmin(address _nftAdmin) public onlyOwner {
         require(_nftAdmin != address(0), "Invalid NFT admin address");
         nftAdmin = _nftAdmin;
+    }
+
+    function setOwner(address _owner) public onlyOwner {
+        require(_owner != address(0), "Invalid owner address");
+        owner = _owner;
     }
 
 	/**
