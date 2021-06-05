@@ -18,8 +18,6 @@ contract GenericHandler is IGenericHandler {
         bytes   _metaData;
     }
 
-    event DebugDeposit(uint256 len, bytes metadata, bytes callData);
-
     // depositNonce => Deposit Record
     mapping (uint8 => mapping(uint64 => DepositRecord)) public _depositRecords;
 
@@ -153,7 +151,6 @@ contract GenericHandler is IGenericHandler {
         bytes4 sig = _contractAddressToDepositFunctionSignature[contractAddress];
         if (sig != bytes4(0)) {
             bytes memory callData = abi.encodeWithSelector(sig, metadata);
-            emit DebugDeposit(lenMetadata, metadata, callData);
             (bool success,) = contractAddress.call(callData);
             require(success, "delegatecall to contractAddress failed");
         }

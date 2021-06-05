@@ -10,13 +10,13 @@ contract PhalaBTCLottery {
     address public nftAdmin;
     address public genericHandler;
     address public owner;
+    uint public payloadSequence;
     mapping(uint32 => mapping(uint32 => bool)) public openedBox;
-    mapping(uint32 => mapping(uint32 => bool)) public storedTx;
-    mapping(uint32 => mapping(uint32 => bytes)) public txStorage;
+    mapping(uint => bytes) public payloadStorage;
 
     event NewRound(uint32 roundId, uint32 totalCount, uint32 winnerCount);
     event OpenLottery(uint32 roundId, uint32 tokenId, string btcAddr);
-    event SignedTxStored(uint32 roundId, uint32 tokenId, bytes signedTx);
+    event PayloadStored(bytes payload);
 
     modifier onlyNFTAdmin() {
         require(
@@ -104,22 +104,13 @@ contract PhalaBTCLottery {
 
 	/**
 	@notice As a hook function when executeProposal() was invoked in generic handler contract.
-	@notice Data passed into the function should be constructed as follows:
-		roundId								uint32	bytes	0 - 4
-		tokenId								uint32	bytes	4 - 8
-		signedTxLen							uint3	bytes	8 - 12
-		signedTx							bytes	bytes	12 - END
+	@notice Data was encoded by parity-scale-codec
 	*/
-    function recordSignedBTCTx(bytes memory data)
+    function executeHandler(bytes memory data)
         public
         onlyGenericHandler
     {
-		uint32 roundId = data.toUint32(0);
-		uint32 tokenId = data.toUint32(4);
-		uint32 len = data.toUint32(8);
-		bytes memory signedTx = data.slice(12, len);
-
-        _recordSignedBTCTx(roundId, tokenId, signedTx);
+        _storePayload(data);
     }
 
     function _newRound(
@@ -144,16 +135,10 @@ contract PhalaBTCLottery {
         emit OpenLottery(roundId, tokenId, btcAddress);
     }
 
-    function _recordSignedBTCTx(
-        uint32 roundId,
-        uint32 tokenId,
-        bytes memory signedTx
+    function _storePayload(
+        bytes memory payload
     ) private {
-        require(!storedTx[roundId][tokenId], "Invalid Call: Tx already stored");
-
-        storedTx[roundId][tokenId] = true;
-        txStorage[roundId][tokenId] = signedTx;
-
-        emit SignedTxStored(roundId, tokenId, signedTx);
+        payloadStorage[payloadSequence++] = payload;
+        emit PayloadStored(payload);
     }
 }
