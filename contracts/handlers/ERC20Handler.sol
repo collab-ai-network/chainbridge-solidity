@@ -5,6 +5,7 @@ import "../interfaces/IDepositExecute.sol";
 import "./HandlerHelpers.sol";
 import "../ERC20Safe.sol";
 import "@openzeppelin/contracts/presets/ERC20PresetMinterPauser.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 
 /**
     @title Handles ERC20 deposits and deposit executions.
@@ -12,6 +13,8 @@ import "@openzeppelin/contracts/presets/ERC20PresetMinterPauser.sol";
     @notice This contract is intended to be used with the Bridge contract.
  */
 contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
+    using SafeMath for uint256;
+
     struct DepositRecord {
         address _tokenAddress;
         uint8    _lenDestinationRecipientAddress;
@@ -129,7 +132,7 @@ contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
             resourceID,
             recipientAddress,
             depositer,
-            amount
+            amount.div(1e6) // Make it compatible with substrate token decimal
         );
     }
 
@@ -172,9 +175,11 @@ contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
         require(_contractWhitelist[tokenAddress], "provided tokenAddress is not whitelisted");
 
         if (_burnList[tokenAddress]) {
-            mintERC20(tokenAddress, address(recipientAddress), amount);
+            // amount.mul(1e6): Make it compatible with substrate token decimal
+            mintERC20(tokenAddress, address(recipientAddress), amount.mul(1e6));
         } else {
-            releaseERC20(tokenAddress, address(recipientAddress), amount);
+            // amount.mul(1e6): Make it compatible with substrate token decimal
+            releaseERC20(tokenAddress, address(recipientAddress), amount.mul(1e6));
         }
     }
 
