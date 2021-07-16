@@ -51,11 +51,13 @@ contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
 
         _bridgeAddress = bridgeAddress;
 
-        for (uint256 i = 0; i < initialResourceIDs.length; i++) {
+        uint256 initialCount = initialResourceIDs.length;
+        for (uint256 i = 0; i < initialCount; i++) {
             _setResource(initialResourceIDs[i], initialContractAddresses[i]);
         }
 
-        for (uint256 i = 0; i < burnableContractAddresses.length; i++) {
+        uint256 burnableCount = burnableContractAddresses.length;
+        for (uint256 i = 0; i < burnableCount; i++) {
             _setBurnable(burnableContractAddresses[i]);
         }
     }
@@ -112,7 +114,7 @@ contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
             calldatacopy(
                 recipientAddress, // copy to destinationRecipientAddress
                 0xE4, // copy from calldata @ 0x104
-                sub(calldatasize(), 0xE) // copy size (calldatasize - 0x104)
+                sub(calldatasize(), 0xE4) // copy size (calldatasize - 0x104)
             )
         }
 

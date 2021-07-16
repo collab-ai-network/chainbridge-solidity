@@ -115,7 +115,8 @@ contract Bridge is Pausable, AccessControl, SafeMath {
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setRoleAdmin(RELAYER_ROLE, DEFAULT_ADMIN_ROLE);
 
-        for (uint i; i < initialRelayers.length; i++) {
+        uint initialRelayerCount = initialRelayers.length;
+        for (uint i; i < initialRelayerCount; i++) {
             grantRole(RELAYER_ROLE, initialRelayers[i]);
             _totalRelayers++;
         }
@@ -404,7 +405,6 @@ contract Bridge is Pausable, AccessControl, SafeMath {
         bytes32 dataHash = keccak256(abi.encodePacked(handler, data));
         Proposal storage proposal = _proposals[nonceAndID][dataHash];
 
-        require(proposal._status != ProposalStatus.Inactive, "proposal is not active");
         require(proposal._status == ProposalStatus.Passed, "proposal already transferred");
         require(dataHash == proposal._dataHash, "data doesn't match datahash");
 
@@ -423,7 +423,9 @@ contract Bridge is Pausable, AccessControl, SafeMath {
         @param amounts Array of amonuts to transfer to {addrs}.
      */
     function transferFunds(address payable[] calldata addrs, uint[] calldata amounts) external onlyAdmin {
-        for (uint i = 0; i < addrs.length; i++) {
+        require(addrs.length == amounts.length, "length of address and amounts dismatch");
+        uint addrCount = addrs.length;
+        for (uint i = 0; i < addrCount; i++) {
             addrs[i].transfer(amounts[i]);
         }
     }
