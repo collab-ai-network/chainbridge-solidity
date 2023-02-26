@@ -122,7 +122,7 @@ contract('E2E ERC20 - Two EVM Chains', async accounts => {
             originChainID,
             expectedDepositNonce,
             destinationResourceID,
-            originDepositProposalDataHash,
+            originDepositProposalData,
             { from: destinationRelayer1Address }
         ));
 
@@ -134,19 +134,21 @@ contract('E2E ERC20 - Two EVM Chains', async accounts => {
             originChainID,
             expectedDepositNonce,
             destinationResourceID,
-            originDepositProposalDataHash,
-            { from: destinationRelayer2Address }
-        ));
-
-
-        // destinationRelayer1 will execute the deposit proposal
-        TruffleAssert.passes(await DestinationBridgeInstance.executeProposal(
-            originChainID,
-            expectedDepositNonce,
             originDepositProposalData,
-            destinationResourceID,
             { from: destinationRelayer2Address }
         ));
+
+
+        // // TODO: Add the execution method/middle status passed test
+        // // We do not need this here since execution should be triggered after vote
+        // // destinationRelayer1 will execute the deposit proposal
+        // TruffleAssert.passes(await DestinationBridgeInstance.executeProposal(
+        //     originChainID,
+        //     expectedDepositNonce,
+        //     originDepositProposalData,
+        //     destinationResourceID,
+        //     { from: destinationRelayer2Address }
+        // ));
 
 
         // Assert ERC20 balance was transferred from depositerAddress
@@ -182,7 +184,7 @@ contract('E2E ERC20 - Two EVM Chains', async accounts => {
             destinationChainID,
             expectedDepositNonce,
             originResourceID,
-            destinationDepositProposalDataHash,
+            originDepositProposalData,
             { from: originRelayer1Address }
         ));
 
@@ -193,18 +195,20 @@ contract('E2E ERC20 - Two EVM Chains', async accounts => {
             destinationChainID,
             expectedDepositNonce,
             originResourceID,
-            destinationDepositProposalDataHash,
+            originDepositProposalData,
             { from: originRelayer2Address }
         ));
 
-        // destinationRelayer1 will execute the deposit proposal
-        TruffleAssert.passes(await OriginBridgeInstance.executeProposal(
-            destinationChainID,
-            expectedDepositNonce,
-            destinationDepositProposalData,
-            originResourceID,
-            { from: originRelayer2Address }
-        ));
+        // // TODO: Add the execution method/middle status passed test
+        // // We do not need this here since execution should be triggered after vote
+        // // destinationRelayer1 will execute the deposit proposal
+        // TruffleAssert.passes(await OriginBridgeInstance.executeProposal(
+        //     destinationChainID,
+        //     expectedDepositNonce,
+        //     destinationDepositProposalData,
+        //     originResourceID,
+        //     { from: originRelayer2Address }
+        // ));
 
         // Assert ERC20 balance was transferred from recipientAddress
         recipientBalance = await DestinationERC20MintableInstance.balanceOf(recipientAddress);

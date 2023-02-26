@@ -95,7 +95,7 @@ contract('E2E ERC721 - Same Chain', async accounts => {
             chainID,
             expectedDepositNonce,
             resourceID,
-            depositProposalDataHash,
+            proposalData,
             { from: relayer1Address }
         ));
 
@@ -106,18 +106,20 @@ contract('E2E ERC721 - Same Chain', async accounts => {
             chainID,
             expectedDepositNonce,
             resourceID,
-            depositProposalDataHash,
+            proposalData,
             { from: relayer2Address }
         ));
         
-        // relayer1 will execute the deposit proposal
-        TruffleAssert.passes(await BridgeInstance.executeProposal(
-            chainID,
-            expectedDepositNonce,
-            proposalData,
-            resourceID,
-            { from: relayer2Address }
-        ));
+        // // TODO: Add the execution method/middle status passed test
+        // // We do not need this here since execution should be triggered after vote
+        // // relayer1 will execute the deposit proposal
+        // TruffleAssert.passes(await BridgeInstance.executeProposal(
+        //     chainID,
+        //     expectedDepositNonce,
+        //     proposalData,
+        //     resourceID,
+        //     { from: relayer2Address }
+        // ));
 
         // Assert ERC721 balance was transferred from depositerAddress
         const tokenOwnerAfterTransfer = await ERC721MintableInstance.ownerOf(tokenID);

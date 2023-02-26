@@ -1,0 +1,1520 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--global',
+1 verbose cli   'truffle' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData truffle
+8 silly fetchNamedPackageData truffle
+9 silly mapToRegistry name truffle
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry uri https://registry.npmjs.org/truffle
+13 verbose request uri https://registry.npmjs.org/truffle
+14 verbose request no auth needed
+15 info attempt registry request try #1 at 4:54:51 PM
+16 verbose request id dd3a4db5dd4482cf
+17 verbose etag W/"108b5e52829ac535a2e548338f5ecc60"
+18 verbose lastModified Fri, 24 Feb 2023 18:31:50 GMT
+19 http request GET https://registry.npmjs.org/truffle
+20 http 304 https://registry.npmjs.org/truffle
+21 verbose headers { date: 'Sun, 26 Feb 2023 08:54:51 GMT',
+21 verbose headers   connection: 'keep-alive',
+21 verbose headers   'cf-ray': '79f775597d26f9dc-SJC',
+21 verbose headers   'cache-control': 'public, max-age=300',
+21 verbose headers   etag: '"108b5e52829ac535a2e548338f5ecc60"',
+21 verbose headers   'last-modified': 'Fri, 24 Feb 2023 18:31:50 GMT',
+21 verbose headers   vary: 'Accept-Encoding',
+21 verbose headers   'cf-cache-status': 'REVALIDATED',
+21 verbose headers   'x-amz-replication-status': 'COMPLETED',
+21 verbose headers   'x-amz-server-side-encryption': 'AES256',
+21 verbose headers   server: 'cloudflare' }
+22 silly get cb [ 304,
+22 silly get   { date: 'Sun, 26 Feb 2023 08:54:51 GMT',
+22 silly get     connection: 'keep-alive',
+22 silly get     'cf-ray': '79f775597d26f9dc-SJC',
+22 silly get     'cache-control': 'public, max-age=300',
+22 silly get     etag: '"108b5e52829ac535a2e548338f5ecc60"',
+22 silly get     'last-modified': 'Fri, 24 Feb 2023 18:31:50 GMT',
+22 silly get     vary: 'Accept-Encoding',
+22 silly get     'cf-cache-status': 'REVALIDATED',
+22 silly get     'x-amz-replication-status': 'COMPLETED',
+22 silly get     'x-amz-server-side-encryption': 'AES256',
+22 silly get     server: 'cloudflare' } ]
+23 verbose etag https://registry.npmjs.org/truffle from cache
+24 verbose get saving truffle to /home/wangminqi/.npm/registry.npmjs.org/truffle/.cache.json
+25 silly install normalizeTree
+26 silly loadCurrentTree Finishing
+27 silly loadIdealTree Starting
+28 silly install loadIdealTree
+29 silly cloneCurrentTree Starting
+30 silly install cloneCurrentTreeToIdealTree
+31 silly cloneCurrentTree Finishing
+32 silly loadShrinkwrap Starting
+33 silly install loadShrinkwrap
+34 silly loadShrinkwrap Finishing
+35 silly loadAllDepsIntoIdealTree Starting
+36 silly install loadAllDepsIntoIdealTree
+37 silly resolveWithNewModule truffle@5.7.8 checking installable status
+38 silly cache add args [ 'truffle', null ]
+39 verbose cache add spec truffle
+40 silly cache add parsed spec Result {
+40 silly cache add   raw: 'truffle',
+40 silly cache add   scope: null,
+40 silly cache add   name: 'truffle',
+40 silly cache add   rawSpec: '',
+40 silly cache add   spec: 'latest',
+40 silly cache add   type: 'tag' }
+41 silly addNamed truffle@latest
+42 verbose addNamed "latest" is being treated as a dist-tag for truffle
+43 info addNameTag [ 'truffle', 'latest' ]
+44 silly mapToRegistry name truffle
+45 silly mapToRegistry using default registry
+46 silly mapToRegistry registry https://registry.npmjs.org/
+47 silly mapToRegistry uri https://registry.npmjs.org/truffle
+48 verbose addNameTag registry:https://registry.npmjs.org/truffle not in flight; fetching
+49 verbose get https://registry.npmjs.org/truffle not expired, no request
+50 silly addNameTag next cb for truffle with tag latest
+51 silly addNamed truffle@5.7.8
+52 verbose addNamed "5.7.8" is a plain semver version for truffle
+53 silly cache afterAdd truffle@5.7.8
+54 verbose afterAdd /home/wangminqi/.npm/truffle/5.7.8/package/package.json not in flight; writing
+55 verbose afterAdd /home/wangminqi/.npm/truffle/5.7.8/package/package.json written
+56 silly fetchNamedPackageData @truffle/db-loader
+57 silly mapToRegistry name @truffle/db-loader
+58 silly mapToRegistry scope (from package name) @truffle
+59 verbose mapToRegistry no registry URL found in name for scope @truffle
+60 silly mapToRegistry using default registry
+61 silly mapToRegistry registry https://registry.npmjs.org/
+62 silly mapToRegistry uri https://registry.npmjs.org/@truffle%2fdb-loader
+63 silly fetchNamedPackageData @truffle/debugger
+64 silly mapToRegistry name @truffle/debugger
+65 silly mapToRegistry scope (from package name) @truffle
+66 verbose mapToRegistry no registry URL found in name for scope @truffle
+67 silly mapToRegistry using default registry
+68 silly mapToRegistry registry https://registry.npmjs.org/
+69 silly mapToRegistry uri https://registry.npmjs.org/@truffle%2fdebugger
+70 silly fetchNamedPackageData app-module-path
+71 silly mapToRegistry name app-module-path
+72 silly mapToRegistry using default registry
+73 silly mapToRegistry registry https://registry.npmjs.org/
+74 silly mapToRegistry uri https://registry.npmjs.org/app-module-path
+75 silly fetchNamedPackageData ganache
+76 silly mapToRegistry name ganache
+77 silly mapToRegistry using default registry
+78 silly mapToRegistry registry https://registry.npmjs.org/
+79 silly mapToRegistry uri https://registry.npmjs.org/ganache
+80 silly fetchNamedPackageData mocha
+81 silly mapToRegistry name mocha
+82 silly mapToRegistry using default registry
+83 silly mapToRegistry registry https://registry.npmjs.org/
+84 silly mapToRegistry uri https://registry.npmjs.org/mocha
+85 silly fetchNamedPackageData original-require
+86 silly mapToRegistry name original-require
+87 silly mapToRegistry using default registry
+88 silly mapToRegistry registry https://registry.npmjs.org/
+89 silly mapToRegistry uri https://registry.npmjs.org/original-require
+90 silly fetchNamedPackageData @truffle/db
+91 silly mapToRegistry name @truffle/db
+92 silly mapToRegistry scope (from package name) @truffle
+93 verbose mapToRegistry no registry URL found in name for scope @truffle
+94 silly mapToRegistry using default registry
+95 silly mapToRegistry registry https://registry.npmjs.org/
+96 silly mapToRegistry uri https://registry.npmjs.org/@truffle%2fdb
+97 verbose request uri https://registry.npmjs.org/@truffle%2fdb-loader
+98 verbose request no auth needed
+99 info attempt registry request try #1 at 4:54:52 PM
+100 verbose etag W/"d0a63b937a7689ed86b50dc1c78d81b0"
+101 verbose lastModified Fri, 24 Feb 2023 18:31:16 GMT
+102 http request GET https://registry.npmjs.org/@truffle%2fdb-loader
+103 verbose request uri https://registry.npmjs.org/app-module-path
+104 verbose request no auth needed
+105 info attempt registry request try #1 at 4:54:52 PM
+106 verbose etag W/"961828224d5ef5f4d28ab391f874824f"
+107 verbose lastModified Mon, 13 Jun 2022 03:16:22 GMT
+108 http request GET https://registry.npmjs.org/app-module-path
+109 verbose request uri https://registry.npmjs.org/@truffle%2fdebugger
+110 verbose request no auth needed
+111 info attempt registry request try #1 at 4:54:52 PM
+112 verbose etag W/"a856c3f9bff7a6253928e40f7618b4ef"
+113 verbose lastModified Fri, 24 Feb 2023 18:31:25 GMT
+114 http request GET https://registry.npmjs.org/@truffle%2fdebugger
+115 verbose request uri https://registry.npmjs.org/original-require
+116 verbose request no auth needed
+117 info attempt registry request try #1 at 4:54:52 PM
+118 verbose etag W/"8e51e6b24b37c620ecfec4eb4befd777"
+119 verbose lastModified Thu, 19 Jan 2023 02:11:54 GMT
+120 http request GET https://registry.npmjs.org/original-require
+121 verbose request uri https://registry.npmjs.org/@truffle%2fdb
+122 verbose request no auth needed
+123 info attempt registry request try #1 at 4:54:52 PM
+124 verbose etag W/"57be7f497ba1347390d0482ba017891a"
+125 verbose lastModified Fri, 24 Feb 2023 18:31:14 GMT
+126 http request GET https://registry.npmjs.org/@truffle%2fdb
+127 verbose request uri https://registry.npmjs.org/ganache
+128 verbose request no auth needed
+129 info attempt registry request try #1 at 4:54:52 PM
+130 verbose etag W/"f21b5eda550147e988b1ab7cbbaf88d0"
+131 verbose lastModified Wed, 15 Feb 2023 23:05:41 GMT
+132 http request GET https://registry.npmjs.org/ganache
+133 verbose request uri https://registry.npmjs.org/mocha
+134 verbose request no auth needed
+135 info attempt registry request try #1 at 4:54:52 PM
+136 verbose etag W/"56510969684678306098bfe22c46a6ad"
+137 verbose lastModified Sun, 12 Feb 2023 08:12:10 GMT
+138 http request GET https://registry.npmjs.org/mocha
+139 http 304 https://registry.npmjs.org/@truffle%2fdb-loader
+140 verbose headers { date: 'Sun, 26 Feb 2023 08:54:51 GMT',
+140 verbose headers   connection: 'keep-alive',
+140 verbose headers   'cf-ray': '79f7755e2b25f9dc-SJC',
+140 verbose headers   age: '22',
+140 verbose headers   'cache-control': 'public, max-age=300',
+140 verbose headers   etag: '"d0a63b937a7689ed86b50dc1c78d81b0"',
+140 verbose headers   'last-modified': 'Fri, 24 Feb 2023 18:31:16 GMT',
+140 verbose headers   vary: 'Accept-Encoding',
+140 verbose headers   'cf-cache-status': 'HIT',
+140 verbose headers   'x-amz-replication-status': 'COMPLETED',
+140 verbose headers   'x-amz-server-side-encryption': 'AES256',
+140 verbose headers   server: 'cloudflare' }
+141 silly get cb [ 304,
+141 silly get   { date: 'Sun, 26 Feb 2023 08:54:51 GMT',
+141 silly get     connection: 'keep-alive',
+141 silly get     'cf-ray': '79f7755e2b25f9dc-SJC',
+141 silly get     age: '22',
+141 silly get     'cache-control': 'public, max-age=300',
+141 silly get     etag: '"d0a63b937a7689ed86b50dc1c78d81b0"',
+141 silly get     'last-modified': 'Fri, 24 Feb 2023 18:31:16 GMT',
+141 silly get     vary: 'Accept-Encoding',
+141 silly get     'cf-cache-status': 'HIT',
+141 silly get     'x-amz-replication-status': 'COMPLETED',
+141 silly get     'x-amz-server-side-encryption': 'AES256',
+141 silly get     server: 'cloudflare' } ]
+142 verbose etag https://registry.npmjs.org/@truffle%2fdb-loader from cache
+143 verbose get saving @truffle/db-loader to /home/wangminqi/.npm/registry.npmjs.org/_40truffle_252fdb-loader/.cache.json
+144 silly resolveWithNewModule @truffle/db-loader@0.2.17 checking installable status
+145 silly cache add args [ '@truffle/db-loader@^0.2.17', null ]
+146 verbose cache add spec @truffle/db-loader@^0.2.17
+147 silly cache add parsed spec Result {
+147 silly cache add   raw: '@truffle/db-loader@^0.2.17',
+147 silly cache add   scope: '@truffle',
+147 silly cache add   name: '@truffle/db-loader',
+147 silly cache add   rawSpec: '^0.2.17',
+147 silly cache add   spec: '>=0.2.17 <0.3.0',
+147 silly cache add   type: 'range' }
+148 silly addNamed @truffle/db-loader@>=0.2.17 <0.3.0
+149 verbose addNamed ">=0.2.17 <0.3.0" is a valid semver range for @truffle/db-loader
+150 silly addNameRange { name: '@truffle/db-loader',
+150 silly addNameRange   range: '>=0.2.17 <0.3.0',
+150 silly addNameRange   hasData: false }
+151 silly mapToRegistry name @truffle/db-loader
+152 silly mapToRegistry scope (from package name) @truffle
+153 verbose mapToRegistry no registry URL found in name for scope @truffle
+154 silly mapToRegistry using default registry
+155 silly mapToRegistry registry https://registry.npmjs.org/
+156 silly mapToRegistry uri https://registry.npmjs.org/@truffle%2fdb-loader
+157 verbose addNameRange registry:https://registry.npmjs.org/@truffle%2fdb-loader not in flight; fetching
+158 verbose get https://registry.npmjs.org/@truffle%2fdb-loader not expired, no request
+159 silly addNameRange number 2 { name: '@truffle/db-loader',
+159 silly addNameRange   range: '>=0.2.17 <0.3.0',
+159 silly addNameRange   hasData: true }
+160 silly addNameRange versions [ '@truffle/db-loader',
+160 silly addNameRange   [ '0.0.2',
+160 silly addNameRange     '0.0.3',
+160 silly addNameRange     '0.0.4',
+160 silly addNameRange     '0.0.5',
+160 silly addNameRange     '0.0.6',
+160 silly addNameRange     '0.0.7',
+160 silly addNameRange     '0.0.8',
+160 silly addNameRange     '0.0.9-alpha.0',
+160 silly addNameRange     '0.0.9',
+160 silly addNameRange     '0.0.9-alpha.1',
+160 silly addNameRange     '0.0.10',
+160 silly addNameRange     '0.0.11',
+160 silly addNameRange     '0.0.12-alpha.0',
+160 silly addNameRange     '0.0.12-decoder-beta.0',
+160 silly addNameRange     '0.0.12',
+160 silly addNameRange     '0.0.13',
+160 silly addNameRange     '0.0.14',
+160 silly addNameRange     '0.0.15',
+160 silly addNameRange     '0.0.16',
+160 silly addNameRange     '0.0.17',
+160 silly addNameRange     '0.0.18',
+160 silly addNameRange     '0.0.19',
+160 silly addNameRange     '0.0.20',
+160 silly addNameRange     '0.0.21',
+160 silly addNameRange     '0.0.22',
+160 silly addNameRange     '0.0.23',
+160 silly addNameRange     '0.0.24',
+160 silly addNameRange     '0.0.25',
+160 silly addNameRange     '0.0.26',
+160 silly addNameRange     '0.0.27',
+160 silly addNameRange     '0.0.28',
+160 silly addNameRange     '0.0.29-dashboard.1',
+160 silly addNameRange     '0.1.0',
+160 silly addNameRange     '0.1.1',
+160 silly addNameRange     '0.1.2',
+160 silly addNameRange     '0.1.3',
+160 silly addNameRange     '0.1.4',
+160 silly addNameRange     '0.1.5',
+160 silly addNameRange     '0.1.6',
+160 silly addNameRange     '0.1.7',
+160 silly addNameRange     '0.1.8',
+160 silly addNameRange     '0.1.9',
+160 silly addNameRange     '0.1.10',
+160 silly addNameRange     '0.1.11',
+160 silly addNameRange     '0.1.12',
+160 silly addNameRange     '0.1.13',
+160 silly addNameRange     '0.1.14',
+160 silly addNameRange     '0.1.15',
+160 silly addNameRange     '0.1.16',
+160 silly addNameRange     '0.1.17',
+160 silly addNameRange     '0.1.18',
+160 silly addNameRange     '0.1.19',
+160 silly addNameRange     '0.1.20',
+160 silly addNameRange     '0.1.21-alpha.0',
+160 silly addNameRange     '0.1.21',
+160 silly addNameRange     '0.1.21-alpha.2',
+160 silly addNameRange     '0.1.22',
+160 silly addNameRange     '0.1.23',
+160 silly addNameRange     '0.1.24',
+160 silly addNameRange     '0.1.25-typescript-migrations.0',
+160 silly addNameRange     '0.1.25',
+160 silly addNameRange     '0.1.26',
+160 silly addNameRange     '0.1.27',
+160 silly addNameRange     '0.1.28',
+160 silly addNameRange     '0.1.29',
+160 silly addNameRange     '0.1.30-hardhat-error.0',
+160 silly addNameRange     '0.1.30-hardhat-error.1',
+160 silly addNameRange     '0.1.30',
+160 silly addNameRange     '0.1.31-hardhat-error.0',
+160 silly addNameRange     '0.1.31',
+160 silly addNameRange     '0.1.32',
+160 silly addNameRange     '0.1.33',
+160 silly addNameRange     '0.2.0',
+160 silly addNameRange     '0.2.1',
+160 silly addNameRange     '0.2.2',
+160 silly addNameRange     '0.2.3',
+160 silly addNameRange     '0.2.4',
+160 silly addNameRange     '0.2.5',
+160 silly addNameRange     '0.2.6',
+160 silly addNameRange     '0.2.7',
+160 silly addNameRange     '0.2.8',
+160 silly addNameRange     '0.2.9',
+160 silly addNameRange     '0.2.10',
+160 silly addNameRange     '0.2.11',
+160 silly addNameRange     '0.2.12',
+160 silly addNameRange     '0.2.13',
+160 silly addNameRange     '0.2.14',
+160 silly addNameRange     '0.2.15',
+160 silly addNameRange     '0.2.16',
+160 silly addNameRange     '0.2.17' ] ]
+161 silly addNamed @truffle/db-loader@0.2.17
+162 verbose addNamed "0.2.17" is a plain semver version for @truffle/db-loader
+163 silly cache afterAdd @truffle/db-loader@0.2.17
+164 verbose afterAdd /home/wangminqi/.npm/@truffle/db-loader/0.2.17/package/package.json not in flight; writing
+165 verbose afterAdd /home/wangminqi/.npm/@truffle/db-loader/0.2.17/package/package.json written
+166 http 304 https://registry.npmjs.org/original-require
+167 verbose headers { date: 'Sun, 26 Feb 2023 08:54:52 GMT',
+167 verbose headers   connection: 'keep-alive',
+167 verbose headers   'cf-ray': '79f775608e09986a-SJC',
+167 verbose headers   age: '23',
+167 verbose headers   'cache-control': 'public, max-age=300',
+167 verbose headers   etag: '"8e51e6b24b37c620ecfec4eb4befd777"',
+167 verbose headers   'last-modified': 'Thu, 19 Jan 2023 02:11:54 GMT',
+167 verbose headers   vary: 'Accept-Encoding',
+167 verbose headers   'cf-cache-status': 'HIT',
+167 verbose headers   'x-amz-replication-status': 'COMPLETED',
+167 verbose headers   'x-amz-server-side-encryption': 'AES256',
+167 verbose headers   server: 'cloudflare' }
+168 silly get cb [ 304,
+168 silly get   { date: 'Sun, 26 Feb 2023 08:54:52 GMT',
+168 silly get     connection: 'keep-alive',
+168 silly get     'cf-ray': '79f775608e09986a-SJC',
+168 silly get     age: '23',
+168 silly get     'cache-control': 'public, max-age=300',
+168 silly get     etag: '"8e51e6b24b37c620ecfec4eb4befd777"',
+168 silly get     'last-modified': 'Thu, 19 Jan 2023 02:11:54 GMT',
+168 silly get     vary: 'Accept-Encoding',
+168 silly get     'cf-cache-status': 'HIT',
+168 silly get     'x-amz-replication-status': 'COMPLETED',
+168 silly get     'x-amz-server-side-encryption': 'AES256',
+168 silly get     server: 'cloudflare' } ]
+169 verbose etag https://registry.npmjs.org/original-require from cache
+170 verbose get saving original-require to /home/wangminqi/.npm/registry.npmjs.org/original-require/.cache.json
+171 silly resolveWithNewModule original-require@1.0.1 checking installable status
+172 silly cache add args [ 'original-require@^1.0.1', null ]
+173 verbose cache add spec original-require@^1.0.1
+174 silly cache add parsed spec Result {
+174 silly cache add   raw: 'original-require@^1.0.1',
+174 silly cache add   scope: null,
+174 silly cache add   name: 'original-require',
+174 silly cache add   rawSpec: '^1.0.1',
+174 silly cache add   spec: '>=1.0.1 <2.0.0',
+174 silly cache add   type: 'range' }
+175 silly addNamed original-require@>=1.0.1 <2.0.0
+176 verbose addNamed ">=1.0.1 <2.0.0" is a valid semver range for original-require
+177 silly addNameRange { name: 'original-require',
+177 silly addNameRange   range: '>=1.0.1 <2.0.0',
+177 silly addNameRange   hasData: false }
+178 silly mapToRegistry name original-require
+179 silly mapToRegistry using default registry
+180 silly mapToRegistry registry https://registry.npmjs.org/
+181 silly mapToRegistry uri https://registry.npmjs.org/original-require
+182 verbose addNameRange registry:https://registry.npmjs.org/original-require not in flight; fetching
+183 verbose get https://registry.npmjs.org/original-require not expired, no request
+184 silly addNameRange number 2 { name: 'original-require',
+184 silly addNameRange   range: '>=1.0.1 <2.0.0',
+184 silly addNameRange   hasData: true }
+185 silly addNameRange versions [ 'original-require', [ '1.0.0', '1.0.1' ] ]
+186 silly addNamed original-require@1.0.1
+187 verbose addNamed "1.0.1" is a plain semver version for original-require
+188 silly cache afterAdd original-require@1.0.1
+189 verbose afterAdd /home/wangminqi/.npm/original-require/1.0.1/package/package.json not in flight; writing
+190 verbose afterAdd /home/wangminqi/.npm/original-require/1.0.1/package/package.json written
+191 http 304 https://registry.npmjs.org/@truffle%2fdb
+192 verbose headers { date: 'Sun, 26 Feb 2023 08:54:52 GMT',
+192 verbose headers   connection: 'keep-alive',
+192 verbose headers   'cf-ray': '79f775606bfed039-SJC',
+192 verbose headers   age: '23',
+192 verbose headers   'cache-control': 'public, max-age=300',
+192 verbose headers   etag: '"57be7f497ba1347390d0482ba017891a"',
+192 verbose headers   'last-modified': 'Fri, 24 Feb 2023 18:31:14 GMT',
+192 verbose headers   vary: 'Accept-Encoding',
+192 verbose headers   'cf-cache-status': 'HIT',
+192 verbose headers   'x-amz-replication-status': 'COMPLETED',
+192 verbose headers   'x-amz-server-side-encryption': 'AES256',
+192 verbose headers   server: 'cloudflare' }
+193 silly get cb [ 304,
+193 silly get   { date: 'Sun, 26 Feb 2023 08:54:52 GMT',
+193 silly get     connection: 'keep-alive',
+193 silly get     'cf-ray': '79f775606bfed039-SJC',
+193 silly get     age: '23',
+193 silly get     'cache-control': 'public, max-age=300',
+193 silly get     etag: '"57be7f497ba1347390d0482ba017891a"',
+193 silly get     'last-modified': 'Fri, 24 Feb 2023 18:31:14 GMT',
+193 silly get     vary: 'Accept-Encoding',
+193 silly get     'cf-cache-status': 'HIT',
+193 silly get     'x-amz-replication-status': 'COMPLETED',
+193 silly get     'x-amz-server-side-encryption': 'AES256',
+193 silly get     server: 'cloudflare' } ]
+194 verbose etag https://registry.npmjs.org/@truffle%2fdb from cache
+195 verbose get saving @truffle/db to /home/wangminqi/.npm/registry.npmjs.org/_40truffle_252fdb/.cache.json
+196 silly resolveWithNewModule @truffle/db@2.0.17 checking installable status
+197 silly cache add args [ '@truffle/db@^2.0.17', null ]
+198 verbose cache add spec @truffle/db@^2.0.17
+199 silly cache add parsed spec Result {
+199 silly cache add   raw: '@truffle/db@^2.0.17',
+199 silly cache add   scope: '@truffle',
+199 silly cache add   name: '@truffle/db',
+199 silly cache add   rawSpec: '^2.0.17',
+199 silly cache add   spec: '>=2.0.17 <3.0.0',
+199 silly cache add   type: 'range' }
+200 silly addNamed @truffle/db@>=2.0.17 <3.0.0
+201 verbose addNamed ">=2.0.17 <3.0.0" is a valid semver range for @truffle/db
+202 silly addNameRange { name: '@truffle/db', range: '>=2.0.17 <3.0.0', hasData: false }
+203 silly mapToRegistry name @truffle/db
+204 silly mapToRegistry scope (from package name) @truffle
+205 verbose mapToRegistry no registry URL found in name for scope @truffle
+206 silly mapToRegistry using default registry
+207 silly mapToRegistry registry https://registry.npmjs.org/
+208 silly mapToRegistry uri https://registry.npmjs.org/@truffle%2fdb
+209 verbose addNameRange registry:https://registry.npmjs.org/@truffle%2fdb not in flight; fetching
+210 verbose get https://registry.npmjs.org/@truffle%2fdb not expired, no request
+211 silly addNameRange number 2 { name: '@truffle/db', range: '>=2.0.17 <3.0.0', hasData: true }
+212 silly addNameRange versions [ '@truffle/db',
+212 silly addNameRange   [ '0.1.0-0',
+212 silly addNameRange     '0.1.0-1',
+212 silly addNameRange     '0.1.0-2',
+212 silly addNameRange     '0.1.1-abi-utils.0',
+212 silly addNameRange     '0.1.0-3',
+212 silly addNameRange     '0.1.0',
+212 silly addNameRange     '0.2.0-0',
+212 silly addNameRange     '0.2.0-1',
+212 silly addNameRange     '0.2.0-2',
+212 silly addNameRange     '0.2.0-3',
+212 silly addNameRange     '0.2.0-4',
+212 silly addNameRange     '0.2.0-5',
+212 silly addNameRange     '0.2.0',
+212 silly addNameRange     '0.3.0-0',
+212 silly addNameRange     '0.3.0-1',
+212 silly addNameRange     '0.3.0-2',
+212 silly addNameRange     '0.3.0',
+212 silly addNameRange     '0.4.0-0',
+212 silly addNameRange     '0.4.0-1',
+212 silly addNameRange     '0.4.0-2',
+212 silly addNameRange     '0.4.0-3',
+212 silly addNameRange     '0.4.0-4',
+212 silly addNameRange     '0.4.0',
+212 silly addNameRange     '0.5.0',
+212 silly addNameRange     '0.5.1',
+212 silly addNameRange     '0.5.2',
+212 silly addNameRange     '0.5.3',
+212 silly addNameRange     '0.5.4',
+212 silly addNameRange     '0.5.5',
+212 silly addNameRange     '0.5.4-preserves.0',
+212 silly addNameRange     '0.5.6',
+212 silly addNameRange     '0.5.7',
+212 silly addNameRange     '0.5.8',
+212 silly addNameRange     '0.5.9',
+212 silly addNameRange     '0.5.10',
+212 silly addNameRange     '0.5.11',
+212 silly addNameRange     '0.5.12',
+212 silly addNameRange     '0.5.13',
+212 silly addNameRange     '0.5.14',
+212 silly addNameRange     '0.5.15-decoder-no-web3.0',
+212 silly addNameRange     '0.5.15-cheerios.0',
+212 silly addNameRange     '0.5.15-cheerios.1',
+212 silly addNameRange     '0.5.15',
+212 silly addNameRange     '0.5.16',
+212 silly addNameRange     '0.5.17',
+212 silly addNameRange     '0.5.18',
+212 silly addNameRange     '0.5.19',
+212 silly addNameRange     '0.5.20',
+212 silly addNameRange     '0.5.21',
+212 silly addNameRange     '0.5.22',
+212 silly addNameRange     '0.5.23',
+212 silly addNameRange     '0.5.24',
+212 silly addNameRange     '0.5.25',
+212 silly addNameRange     '0.5.26',
+212 silly addNameRange     '0.5.27',
+212 silly addNameRange     '0.5.28',
+212 silly addNameRange     '0.5.29',
+212 silly addNameRange     '0.5.30-alpha.0',
+212 silly addNameRange     '0.5.30',
+212 silly addNameRange     '0.5.30-alpha.1',
+212 silly addNameRange     '0.5.31',
+212 silly addNameRange     '0.5.32',
+212 silly addNameRange     '0.5.33-alpha.0',
+212 silly addNameRange     '0.5.33-decoder-beta.0',
+212 silly addNameRange     '0.5.33',
+212 silly addNameRange     '0.5.34',
+212 silly addNameRange     '0.5.35',
+212 silly addNameRange     '0.5.36',
+212 silly addNameRange     '0.5.37',
+212 silly addNameRange     '0.5.38',
+212 silly addNameRange     '0.5.39',
+212 silly addNameRange     '0.5.40',
+212 silly addNameRange     '0.5.41',
+212 silly addNameRange     '0.5.42',
+212 silly addNameRange     '0.5.43',
+212 silly addNameRange     '0.5.44',
+212 silly addNameRange     '0.5.45',
+212 silly addNameRange     '0.5.46',
+212 silly addNameRange     '0.5.47',
+212 silly addNameRange     '0.5.48',
+212 silly addNameRange     '0.5.49',
+212 silly addNameRange     '0.5.50-dashboard.1',
+212 silly addNameRange     '0.5.50',
+212 silly addNameRange     '0.5.51',
+212 silly addNameRange     '0.5.52',
+212 silly addNameRange     '0.5.53',
+212 silly addNameRange     '0.5.54',
+212 silly addNameRange     '0.5.55',
+212 silly addNameRange     '0.5.56',
+212 silly addNameRange     '0.5.57',
+212 silly addNameRange     '0.5.58',
+212 silly addNameRange     '0.5.59',
+212 silly addNameRange     '1.0.0',
+212 silly addNameRange     '1.0.1',
+212 silly addNameRange     '1.0.2',
+212 silly addNameRange     '1.0.3',
+212 silly addNameRange     '1.0.4',
+212 silly addNameRange     '1.0.5',
+212 silly addNameRange     '1.0.6',
+212 silly addNameRange     '1.0.7',
+212 silly addNameRange     ... 40 more items ] ]
+213 silly addNamed @truffle/db@2.0.17
+214 verbose addNamed "2.0.17" is a plain semver version for @truffle/db
+215 silly cache afterAdd @truffle/db@2.0.17
+216 verbose afterAdd /home/wangminqi/.npm/@truffle/db/2.0.17/package/package.json not in flight; writing
+217 verbose afterAdd /home/wangminqi/.npm/@truffle/db/2.0.17/package/package.json written
+218 http 304 https://registry.npmjs.org/ganache
+219 verbose headers { date: 'Sun, 26 Feb 2023 08:54:52 GMT',
+219 verbose headers   connection: 'keep-alive',
+219 verbose headers   'cf-ray': '79f775610fb5f95f-SJC',
+219 verbose headers   'cache-control': 'public, max-age=300',
+219 verbose headers   etag: '"f21b5eda550147e988b1ab7cbbaf88d0"',
+219 verbose headers   'last-modified': 'Wed, 15 Feb 2023 23:05:41 GMT',
+219 verbose headers   vary: 'Accept-Encoding',
+219 verbose headers   'cf-cache-status': 'MISS',
+219 verbose headers   'x-amz-replication-status': 'COMPLETED',
+219 verbose headers   'x-amz-server-side-encryption': 'AES256',
+219 verbose headers   server: 'cloudflare' }
+220 silly get cb [ 304,
+220 silly get   { date: 'Sun, 26 Feb 2023 08:54:52 GMT',
+220 silly get     connection: 'keep-alive',
+220 silly get     'cf-ray': '79f775610fb5f95f-SJC',
+220 silly get     'cache-control': 'public, max-age=300',
+220 silly get     etag: '"f21b5eda550147e988b1ab7cbbaf88d0"',
+220 silly get     'last-modified': 'Wed, 15 Feb 2023 23:05:41 GMT',
+220 silly get     vary: 'Accept-Encoding',
+220 silly get     'cf-cache-status': 'MISS',
+220 silly get     'x-amz-replication-status': 'COMPLETED',
+220 silly get     'x-amz-server-side-encryption': 'AES256',
+220 silly get     server: 'cloudflare' } ]
+221 verbose etag https://registry.npmjs.org/ganache from cache
+222 verbose get saving ganache to /home/wangminqi/.npm/registry.npmjs.org/ganache/.cache.json
+223 http 304 https://registry.npmjs.org/app-module-path
+224 verbose headers { date: 'Sun, 26 Feb 2023 08:54:52 GMT',
+224 verbose headers   connection: 'keep-alive',
+224 verbose headers   'cf-ray': '79f77560abe3982b-SJC',
+224 verbose headers   'cache-control': 'public, max-age=300',
+224 verbose headers   etag: '"961828224d5ef5f4d28ab391f874824f"',
+224 verbose headers   'last-modified': 'Mon, 13 Jun 2022 03:16:22 GMT',
+224 verbose headers   vary: 'Accept-Encoding',
+224 verbose headers   'cf-cache-status': 'REVALIDATED',
+224 verbose headers   'x-amz-replication-status': 'COMPLETED',
+224 verbose headers   server: 'cloudflare' }
+225 silly get cb [ 304,
+225 silly get   { date: 'Sun, 26 Feb 2023 08:54:52 GMT',
+225 silly get     connection: 'keep-alive',
+225 silly get     'cf-ray': '79f77560abe3982b-SJC',
+225 silly get     'cache-control': 'public, max-age=300',
+225 silly get     etag: '"961828224d5ef5f4d28ab391f874824f"',
+225 silly get     'last-modified': 'Mon, 13 Jun 2022 03:16:22 GMT',
+225 silly get     vary: 'Accept-Encoding',
+225 silly get     'cf-cache-status': 'REVALIDATED',
+225 silly get     'x-amz-replication-status': 'COMPLETED',
+225 silly get     server: 'cloudflare' } ]
+226 verbose etag https://registry.npmjs.org/app-module-path from cache
+227 verbose get saving app-module-path to /home/wangminqi/.npm/registry.npmjs.org/app-module-path/.cache.json
+228 silly resolveWithNewModule ganache@7.7.5 checking installable status
+229 silly cache add args [ 'ganache@7.7.5', null ]
+230 verbose cache add spec ganache@7.7.5
+231 silly cache add parsed spec Result {
+231 silly cache add   raw: 'ganache@7.7.5',
+231 silly cache add   scope: null,
+231 silly cache add   name: 'ganache',
+231 silly cache add   rawSpec: '7.7.5',
+231 silly cache add   spec: '7.7.5',
+231 silly cache add   type: 'version' }
+232 silly addNamed ganache@7.7.5
+233 verbose addNamed "7.7.5" is a plain semver version for ganache
+234 silly mapToRegistry name ganache
+235 silly mapToRegistry using default registry
+236 silly mapToRegistry registry https://registry.npmjs.org/
+237 silly mapToRegistry uri https://registry.npmjs.org/ganache
+238 verbose addNameVersion registry:https://registry.npmjs.org/ganache not in flight; fetching
+239 silly resolveWithNewModule app-module-path@2.2.0 checking installable status
+240 silly cache add args [ 'app-module-path@^2.2.0', null ]
+241 verbose cache add spec app-module-path@^2.2.0
+242 silly cache add parsed spec Result {
+242 silly cache add   raw: 'app-module-path@^2.2.0',
+242 silly cache add   scope: null,
+242 silly cache add   name: 'app-module-path',
+242 silly cache add   rawSpec: '^2.2.0',
+242 silly cache add   spec: '>=2.2.0 <3.0.0',
+242 silly cache add   type: 'range' }
+243 silly addNamed app-module-path@>=2.2.0 <3.0.0
+244 verbose addNamed ">=2.2.0 <3.0.0" is a valid semver range for app-module-path
+245 silly addNameRange { name: 'app-module-path',
+245 silly addNameRange   range: '>=2.2.0 <3.0.0',
+245 silly addNameRange   hasData: false }
+246 silly mapToRegistry name app-module-path
+247 silly mapToRegistry using default registry
+248 silly mapToRegistry registry https://registry.npmjs.org/
+249 silly mapToRegistry uri https://registry.npmjs.org/app-module-path
+250 verbose addNameRange registry:https://registry.npmjs.org/app-module-path not in flight; fetching
+251 verbose get https://registry.npmjs.org/app-module-path not expired, no request
+252 silly addNameRange number 2 { name: 'app-module-path',
+252 silly addNameRange   range: '>=2.2.0 <3.0.0',
+252 silly addNameRange   hasData: true }
+253 silly addNameRange versions [ 'app-module-path',
+253 silly addNameRange   [ '0.1.0',
+253 silly addNameRange     '0.3.0-beta',
+253 silly addNameRange     '0.3.1-beta',
+253 silly addNameRange     '0.3.2-beta',
+253 silly addNameRange     '1.0.0',
+253 silly addNameRange     '1.0.1',
+253 silly addNameRange     '1.0.2',
+253 silly addNameRange     '1.0.3',
+253 silly addNameRange     '1.0.4',
+253 silly addNameRange     '1.0.5',
+253 silly addNameRange     '1.0.6',
+253 silly addNameRange     '1.1.0',
+253 silly addNameRange     '2.0.0',
+253 silly addNameRange     '2.1.0',
+253 silly addNameRange     '2.2.0' ] ]
+254 silly addNamed app-module-path@2.2.0
+255 verbose addNamed "2.2.0" is a plain semver version for app-module-path
+256 verbose get https://registry.npmjs.org/ganache not expired, no request
+257 silly cache afterAdd app-module-path@2.2.0
+258 verbose afterAdd /home/wangminqi/.npm/app-module-path/2.2.0/package/package.json not in flight; writing
+259 silly cache afterAdd ganache@7.7.5
+260 verbose afterAdd /home/wangminqi/.npm/ganache/7.7.5/package/package.json not in flight; writing
+261 verbose afterAdd /home/wangminqi/.npm/app-module-path/2.2.0/package/package.json written
+262 verbose afterAdd /home/wangminqi/.npm/ganache/7.7.5/package/package.json written
+263 silly addShrinkwrap Found shrinkwrap in ganache package/npm-shrinkwrap.json
+264 silly addShrinkwrap Completed reading shrinkwrap in ganache
+265 verbose addBundled extract /home/wangminqi/.npm/ganache/7.7.5/package.tgz
+266 verbose tar unpack /home/wangminqi/.npm/ganache/7.7.5/package.tgz
+267 verbose tar unpacking to /tmp/npm-2149-24c0332e/unpack-c29e22c3
+268 silly gentlyRm /tmp/npm-2149-24c0332e/unpack-c29e22c3 is being purged
+269 verbose gentlyRm don't care about contents; nuking /tmp/npm-2149-24c0332e/unpack-c29e22c3
+270 silly gunzTarPerm modes [ '755', '644' ]
+271 silly gunzTarPerm extractEntry node_modules/node-addon-api/.editorconfig
+272 silly gunzTarPerm extractEntry node_modules/brorand/.npmignore
+273 silly gunzTarPerm extractEntry node_modules/hmac-drbg/.npmignore
+274 silly gunzTarPerm extractEntry node_modules/minimalistic-crypto-utils/.npmignore
+275 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/.npmignore
+276 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/obj/.npmignore
+277 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/build_detect_platform
+278 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/COPYING
+279 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/COPYING
+280 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/Doxyfile
+281 silly gunzTarPerm extractEntry LICENSE
+282 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/LICENSE
+283 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/node_modules/node-gyp-build/LICENSE
+284 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/LICENSE
+285 silly gunzTarPerm extractEntry node_modules/base64-js/LICENSE
+286 silly gunzTarPerm extractEntry node_modules/buffer/LICENSE
+287 silly gunzTarPerm extractEntry node_modules/catering/LICENSE
+288 silly gunzTarPerm extractEntry node_modules/elliptic/node_modules/bn.js/LICENSE
+289 silly gunzTarPerm extractEntry node_modules/ieee754/LICENSE
+290 silly gunzTarPerm extractEntry node_modules/inherits/LICENSE
+291 silly gunzTarPerm extractEntry node_modules/is-buffer/LICENSE
+292 silly gunzTarPerm extractEntry node_modules/keccak/LICENSE
+293 silly gunzTarPerm extractEntry node_modules/level-concat-iterator/LICENSE
+294 silly gunzTarPerm extractEntry node_modules/level-supports/LICENSE
+295 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/LICENSE
+296 silly gunzTarPerm extractEntry node_modules/leveldown/LICENSE
+297 silly gunzTarPerm extractEntry node_modules/minimalistic-assert/LICENSE
+298 silly gunzTarPerm extractEntry node_modules/napi-macros/LICENSE
+299 silly gunzTarPerm extractEntry node_modules/node-gyp-build/LICENSE
+300 silly gunzTarPerm extractEntry node_modules/queue-microtask/LICENSE
+301 silly gunzTarPerm extractEntry node_modules/queue-tick/LICENSE
+302 silly gunzTarPerm extractEntry node_modules/readable-stream/LICENSE
+303 silly gunzTarPerm extractEntry node_modules/safe-buffer/LICENSE
+304 silly gunzTarPerm extractEntry node_modules/secp256k1/LICENSE
+305 silly gunzTarPerm extractEntry node_modules/string_decoder/LICENSE
+306 silly gunzTarPerm extractEntry node_modules/util-deprecate/LICENSE
+307 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/Makefile
+308 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/port/README
+309 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/TODO
+310 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/configure.ac
+311 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/Makefile.am
+312 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/port-libuv/port_uv.h.bak
+313 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/bench_ecdh.c
+314 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/bench_ecmult.c
+315 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/bench_internal.c
+316 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/bench_recover.c
+317 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/bench_sign.c
+318 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/bench_verify.c
+319 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/src/bigint-buffer.c
+320 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/c_test.c
+321 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/gen_context.c
+322 silly gunzTarPerm extractEntry node_modules/napi-macros/example/index.c
+323 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-32/KeccakP-1600-inplace32BI.c
+324 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/KeccakP-1600-opt64.c
+325 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-32/KeccakSpongeWidth1600.c
+326 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/KeccakSpongeWidth1600.c
+327 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/contrib/lax_der_parsing.c
+328 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/contrib/lax_der_privatekey_parsing.c
+329 silly gunzTarPerm extractEntry node_modules/node-addon-api/src/nothing.c
+330 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.c
+331 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/java/org_bitcoin_Secp256k1Context.c
+332 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/secp256k1.c
+333 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/tests_exhaustive.c
+334 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/tests.c
+335 silly gunzTarPerm extractEntry node_modules/keccak/src/addon.cc
+336 silly gunzTarPerm extractEntry node_modules/secp256k1/src/addon.cc
+337 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/arena_test.cc
+338 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/arena.cc
+339 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/autocompact_test.cc
+340 silly gunzTarPerm extractEntry node_modules/leveldown/binding.cc
+341 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/block_builder.cc
+342 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/block.cc
+343 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/bloom_test.cc
+344 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/bloom.cc
+345 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/builder.cc
+346 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/c.cc
+347 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/cache_test.cc
+348 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/cache.cc
+349 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/coding_test.cc
+350 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/coding.cc
+351 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/comparator.cc
+352 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/corruption_test.cc
+353 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/crc32c_test.cc
+354 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/crc32c.cc
+355 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/db_bench.cc
+356 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/db_impl.cc
+357 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/db_iter.cc
+358 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/db_test.cc
+359 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/dbformat_test.cc
+360 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/dbformat.cc
+361 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/dumpfile.cc
+362 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/env_posix_test.cc
+363 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/env_posix.cc
+364 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/env_test.cc
+365 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/port-libuv/env_win.cc
+366 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/env.cc
+367 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/fault_injection_test.cc
+368 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/filename_test.cc
+369 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/filename.cc
+370 http 304 https://registry.npmjs.org/@truffle%2fdebugger
+371 verbose headers { date: 'Sun, 26 Feb 2023 08:54:52 GMT',
+371 verbose headers   connection: 'keep-alive',
+371 verbose headers   'cf-ray': '79f775611ba8cffd-SJC',
+371 verbose headers   'cache-control': 'public, max-age=300',
+371 verbose headers   etag: '"a856c3f9bff7a6253928e40f7618b4ef"',
+371 verbose headers   'last-modified': 'Fri, 24 Feb 2023 18:31:25 GMT',
+371 verbose headers   vary: 'Accept-Encoding',
+371 verbose headers   'cf-cache-status': 'REVALIDATED',
+371 verbose headers   'x-amz-replication-status': 'COMPLETED',
+371 verbose headers   'x-amz-server-side-encryption': 'AES256',
+371 verbose headers   server: 'cloudflare' }
+372 silly get cb [ 304,
+372 silly get   { date: 'Sun, 26 Feb 2023 08:54:52 GMT',
+372 silly get     connection: 'keep-alive',
+372 silly get     'cf-ray': '79f775611ba8cffd-SJC',
+372 silly get     'cache-control': 'public, max-age=300',
+372 silly get     etag: '"a856c3f9bff7a6253928e40f7618b4ef"',
+372 silly get     'last-modified': 'Fri, 24 Feb 2023 18:31:25 GMT',
+372 silly get     vary: 'Accept-Encoding',
+372 silly get     'cf-cache-status': 'REVALIDATED',
+372 silly get     'x-amz-replication-status': 'COMPLETED',
+372 silly get     'x-amz-server-side-encryption': 'AES256',
+372 silly get     server: 'cloudflare' } ]
+373 verbose etag https://registry.npmjs.org/@truffle%2fdebugger from cache
+374 verbose get saving @truffle/debugger to /home/wangminqi/.npm/registry.npmjs.org/_40truffle_252fdebugger/.cache.json
+375 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/filter_block_test.cc
+376 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/filter_block.cc
+377 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/filter_policy.cc
+378 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/format.cc
+379 silly resolveWithNewModule @truffle/debugger@11.0.28 checking installable status
+380 silly cache add args [ '@truffle/debugger@^11.0.28', null ]
+381 verbose cache add spec @truffle/debugger@^11.0.28
+382 silly cache add parsed spec Result {
+382 silly cache add   raw: '@truffle/debugger@^11.0.28',
+382 silly cache add   scope: '@truffle',
+382 silly cache add   name: '@truffle/debugger',
+382 silly cache add   rawSpec: '^11.0.28',
+382 silly cache add   spec: '>=11.0.28 <12.0.0',
+382 silly cache add   type: 'range' }
+383 silly addNamed @truffle/debugger@>=11.0.28 <12.0.0
+384 verbose addNamed ">=11.0.28 <12.0.0" is a valid semver range for @truffle/debugger
+385 silly addNameRange { name: '@truffle/debugger',
+385 silly addNameRange   range: '>=11.0.28 <12.0.0',
+385 silly addNameRange   hasData: false }
+386 silly mapToRegistry name @truffle/debugger
+387 silly mapToRegistry scope (from package name) @truffle
+388 verbose mapToRegistry no registry URL found in name for scope @truffle
+389 silly mapToRegistry using default registry
+390 silly mapToRegistry registry https://registry.npmjs.org/
+391 silly mapToRegistry uri https://registry.npmjs.org/@truffle%2fdebugger
+392 verbose addNameRange registry:https://registry.npmjs.org/@truffle%2fdebugger not in flight; fetching
+393 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/hash_test.cc
+394 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/hash.cc
+395 verbose get https://registry.npmjs.org/@truffle%2fdebugger not expired, no request
+396 silly addNameRange number 2 { name: '@truffle/debugger',
+396 silly addNameRange   range: '>=11.0.28 <12.0.0',
+396 silly addNameRange   hasData: true }
+397 silly addNameRange versions [ '@truffle/debugger',
+397 silly addNameRange   [ '5.0.27',
+397 silly addNameRange     '5.0.28-migrate-describe.0',
+397 silly addNameRange     '5.0.28-migrate-describe.1',
+397 silly addNameRange     '5.0.28',
+397 silly addNameRange     '5.0.29',
+397 silly addNameRange     '5.1.0-ens-events.0',
+397 silly addNameRange     '5.0.29-alphaTez.0',
+397 silly addNameRange     '5.0.30',
+397 silly addNameRange     '5.0.31-alphaTez.0',
+397 silly addNameRange     '5.0.31',
+397 silly addNameRange     '5.0.32-alphaTez.0',
+397 silly addNameRange     '5.0.32',
+397 silly addNameRange     '5.0.33',
+397 silly addNameRange     '5.0.34',
+397 silly addNameRange     '5.0.37-micah.0',
+397 silly addNameRange     '6.0.0-next.0',
+397 silly addNameRange     '6.0.0-next.1',
+397 silly addNameRange     '5.0.35',
+397 silly addNameRange     '5.0.36-micah.0',
+397 silly addNameRange     '6.0.0',
+397 silly addNameRange     '6.1.0',
+397 silly addNameRange     '6.0.1-truffleLogger.0',
+397 silly addNameRange     '6.1.1-alphaTez.0',
+397 silly addNameRange     '6.1.2-alphaTez.0',
+397 silly addNameRange     '6.1.1',
+397 silly addNameRange     '6.1.3-alphaTez.0',
+397 silly addNameRange     '6.1.2-truffleLogger.0',
+397 silly addNameRange     '6.1.3-truffleLogger.0',
+397 silly addNameRange     '6.1.2',
+397 silly addNameRange     '6.1.4-truffleLogger.0',
+397 silly addNameRange     '6.1.3',
+397 silly addNameRange     '6.1.4-alphaTez.0',
+397 silly addNameRange     '6.1.5-alphaTez.0',
+397 silly addNameRange     '6.1.5-alphaTez.1',
+397 silly addNameRange     '6.1.4',
+397 silly addNameRange     '6.1.5-alphaTez.2',
+397 silly addNameRange     '6.1.5-truffleLogger.0',
+397 silly addNameRange     '6.1.5-alphaTez.3',
+397 silly addNameRange     '6.1.5',
+397 silly addNameRange     '6.1.6',
+397 silly addNameRange     '6.1.7-alphaTez.0',
+397 silly addNameRange     '6.1.7',
+397 silly addNameRange     '6.1.8-alphaTez.0',
+397 silly addNameRange     '6.1.8-alphaTez.1',
+397 silly addNameRange     '6.1.8',
+397 silly addNameRange     '6.1.9-truffleLogger.0',
+397 silly addNameRange     '6.1.9-alphaTez.0',
+397 silly addNameRange     '6.1.9-alphaTez.1',
+397 silly addNameRange     '6.1.9-chmod.0',
+397 silly addNameRange     '6.1.9-alphaTez.2',
+397 silly addNameRange     '6.1.9-alphaTez.3',
+397 silly addNameRange     '6.1.9-alphaTez.4',
+397 silly addNameRange     '6.1.9-alphaTez.5',
+397 silly addNameRange     '6.1.9-alphaTez.6',
+397 silly addNameRange     '6.1.9-alphaTez.7',
+397 silly addNameRange     '6.1.9-alphaTez.8',
+397 silly addNameRange     '6.1.9-alphaTez.9',
+397 silly addNameRange     '6.1.9',
+397 silly addNameRange     '6.1.10-truffleLogger.0',
+397 silly addNameRange     '6.1.10-alphaTez.0',
+397 silly addNameRange     '6.2.0-tezos.0',
+397 silly addNameRange     '6.1.10',
+397 silly addNameRange     '6.1.11',
+397 silly addNameRange     '6.1.12-truffleLogger.0',
+397 silly addNameRange     '7.0.0',
+397 silly addNameRange     '7.0.1',
+397 silly addNameRange     '6.2.0-tezos.1',
+397 silly addNameRange     '6.2.0-tezos.2',
+397 silly addNameRange     '7.0.2',
+397 silly addNameRange     '7.0.3',
+397 silly addNameRange     '7.0.4',
+397 silly addNameRange     '7.0.5-tezos.0',
+397 silly addNameRange     '7.0.5-tezos.1',
+397 silly addNameRange     '7.1.0',
+397 silly addNameRange     '7.1.1-tezos.0',
+397 silly addNameRange     '7.1.1',
+397 silly addNameRange     '7.2.0',
+397 silly addNameRange     '7.2.1',
+397 silly addNameRange     '7.2.2',
+397 silly addNameRange     '7.3.0',
+397 silly addNameRange     '7.4.0',
+397 silly addNameRange     '7.1.1-tezos.1',
+397 silly addNameRange     '7.1.1-tezos.2',
+397 silly addNameRange     '7.1.1-tezos.3',
+397 silly addNameRange     '7.1.1-tezos.4',
+397 silly addNameRange     '7.1.1-tezos.5',
+397 silly addNameRange     '7.4.1',
+397 silly addNameRange     '7.1.1-tezos.6',
+397 silly addNameRange     '7.1.1-tezos.7',
+397 silly addNameRange     '7.5.0',
+397 silly addNameRange     '7.5.1',
+397 silly addNameRange     '7.1.1-tezos.8',
+397 silly addNameRange     '7.1.1-tezos.9',
+397 silly addNameRange     '7.5.2',
+397 silly addNameRange     '7.1.1-tezos.10',
+397 silly addNameRange     '7.5.3',
+397 silly addNameRange     '7.5.4',
+397 silly addNameRange     '7.5.4-preserves.0',
+397 silly addNameRange     '7.5.4-preserves.1',
+397 silly addNameRange     '7.5.4-preserves.2',
+397 silly addNameRange     ... 167 more items ] ]
+398 silly addNamed @truffle/debugger@11.0.28
+399 verbose addNamed "11.0.28" is a plain semver version for @truffle/debugger
+400 silly cache afterAdd @truffle/debugger@11.0.28
+401 verbose afterAdd /home/wangminqi/.npm/@truffle/debugger/11.0.28/package/package.json not in flight; writing
+402 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/histogram.cc
+403 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/issues/issue178_test.cc
+404 verbose afterAdd /home/wangminqi/.npm/@truffle/debugger/11.0.28/package/package.json written
+405 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/issues/issue200_test.cc
+406 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/iterator.cc
+407 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/leveldbutil.cc
+408 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/log_reader.cc
+409 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/log_test.cc
+410 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/log_writer.cc
+411 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/logging.cc
+412 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/helpers/memenv/memenv_test.cc
+413 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/helpers/memenv/memenv.cc
+414 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/memtable.cc
+415 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/merger.cc
+416 silly gunzTarPerm extractEntry node_modules/node-addon-api/src/node_api.cc
+417 silly gunzTarPerm extractEntry node_modules/node-addon-api/src/node_internals.cc
+418 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/options.cc
+419 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/port/port_posix_sse.cc
+420 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/port/port_posix.cc
+421 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/port-libuv/port_uv.cc
+422 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/recovery_test.cc
+423 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/repair.cc
+424 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1.cc
+425 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/skiplist_test.cc
+426 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy_unittest.cc
+427 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy-c.cc
+428 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy-sinksource.cc
+429 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy-stubs-internal.cc
+430 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy-test.cc
+431 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy.cc
+432 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/status.cc
+433 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/table_builder.cc
+434 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/table_cache.cc
+435 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/table_test.cc
+436 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/table.cc
+437 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/testharness.cc
+438 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/testutil.cc
+439 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/two_level_iterator.cc
+440 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/port-libuv/uv_condvar_posix.cc
+441 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/version_edit_test.cc
+442 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/version_edit.cc
+443 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/version_set_test.cc
+444 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/version_set.cc
+445 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/port-libuv/win_logger.cc
+446 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/write_batch_test.cc
+447 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/write_batch.cc
+448 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/cmake/SnappyConfig.cmake
+449 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/binding.gyp
+450 silly gunzTarPerm extractEntry node_modules/keccak/binding.gyp
+451 silly gunzTarPerm extractEntry node_modules/leveldown/binding.gyp
+452 silly gunzTarPerm extractEntry node_modules/napi-macros/example/binding.gyp
+453 silly gunzTarPerm extractEntry node_modules/secp256k1/binding.gyp
+454 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb.gyp
+455 silly gunzTarPerm extractEntry node_modules/node-addon-api/src/node_api.gyp
+456 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy.gyp
+457 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-32/align.h
+458 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/align.h
+459 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/arena.h
+460 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/port-libuv/atomic_pointer_win.h
+461 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/port/atomic_pointer.h
+462 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/basic-config.h
+463 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/bench.h
+464 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/block_builder.h
+465 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/block.h
+466 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-32/brg_endian.h
+467 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/brg_endian.h
+468 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/builder.h
+469 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/c.h
+470 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/cache.h
+471 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/coding.h
+472 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/comparator.h
+473 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/freebsd/config.h
+474 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/linux/config.h
+475 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/mac/config.h
+476 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/openbsd/config.h
+477 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/solaris/config.h
+478 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/win32/config.h
+479 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/crc32c.h
+480 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/db_impl.h
+481 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/db_iter.h
+482 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/db.h
+483 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/dbformat.h
+484 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/dumpfile.h
+485 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/ecdsa_impl.h
+486 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/ecdsa.h
+487 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/eckey_impl.h
+488 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/eckey.h
+489 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/ecmult_const_impl.h
+490 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/ecmult_const.h
+491 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/ecmult_gen_impl.h
+492 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/ecmult_gen.h
+493 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/ecmult_impl.h
+494 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/ecmult.h
+495 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/env_posix_test_helper.h
+496 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/env.h
+497 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/field_10x26_impl.h
+498 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/field_10x26.h
+499 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/field_5x52_asm_impl.h
+500 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/field_5x52_impl.h
+501 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/field_5x52_int128_impl.h
+502 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/field_5x52.h
+503 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/field_impl.h
+504 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/field.h
+505 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/filename.h
+506 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/filter_block.h
+507 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/filter_policy.h
+508 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/format.h
+509 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/group_impl.h
+510 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/group.h
+511 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/hash_impl.h
+512 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/hash.h
+513 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/hash.h
+514 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/histogram.h
+515 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/iterator_wrapper.h
+516 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/iterator.h
+517 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/KeccakP-1600-opt64-config.h
+518 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-32/KeccakP-1600-SnP.h
+519 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/KeccakP-1600-SnP.h
+520 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-32/KeccakSponge-common.h
+521 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/KeccakSponge-common.h
+522 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-32/KeccakSpongeWidth1600.h
+523 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/KeccakSpongeWidth1600.h
+524 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/contrib/lax_der_parsing.h
+525 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/contrib/lax_der_privatekey_parsing.h
+526 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/log_format.h
+527 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/log_reader.h
+528 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/log_writer.h
+529 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/logging.h
+530 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/modules/ecdh/main_impl.h
+531 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/modules/recovery/main_impl.h
+532 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/helpers/memenv/memenv.h
+533 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/memtable.h
+534 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/merger.h
+535 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/mutexlock.h
+536 silly gunzTarPerm extractEntry node_modules/node-addon-api/napi-inl.deprecated.h
+537 silly gunzTarPerm extractEntry node_modules/node-addon-api/napi-inl.h
+538 silly gunzTarPerm extractEntry node_modules/napi-macros/napi-macros.h
+539 silly gunzTarPerm extractEntry node_modules/node-addon-api/napi.h
+540 silly gunzTarPerm extractEntry node_modules/node-addon-api/src/node_api_types.h
+541 silly gunzTarPerm extractEntry node_modules/node-addon-api/external-napi/node_api.h
+542 silly gunzTarPerm extractEntry node_modules/node-addon-api/src/node_api.h
+543 silly gunzTarPerm extractEntry node_modules/node-addon-api/src/node_internals.h
+544 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/num_gmp_impl.h
+545 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/num_gmp.h
+546 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/num_impl.h
+547 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/num.h
+548 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/options.h
+549 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.h
+550 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/java/org_bitcoin_Secp256k1Context.h
+551 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/port/port_example.h
+552 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/port/port_posix.h
+553 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/port-libuv/port_uv.h
+554 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/port/port.h
+555 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/posix_logger.h
+556 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/random.h
+557 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/scalar_4x64_impl.h
+558 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/scalar_4x64.h
+559 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/scalar_8x32_impl.h
+560 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/scalar_8x32.h
+561 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/scalar_impl.h
+562 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/scalar_low_impl.h
+563 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/scalar_low.h
+564 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/scalar.h
+565 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/scratch_impl.h
+566 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/scratch.h
+567 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/include/secp256k1_ecdh.h
+568 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/include/secp256k1_preallocated.h
+569 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/include/secp256k1_recovery.h
+570 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1.h
+571 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/include/secp256k1.h
+572 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/skiplist.h
+573 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/slice.h
+574 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy-c.h
+575 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy-internal.h
+576 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy-sinksource.h
+577 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy-stubs-internal.h
+578 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/freebsd/snappy-stubs-public.h
+579 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/linux/snappy-stubs-public.h
+580 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/mac/snappy-stubs-public.h
+581 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/openbsd/snappy-stubs-public.h
+582 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/solaris/snappy-stubs-public.h
+583 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/win32/snappy-stubs-public.h
+584 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy-test.h
+585 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy.h
+586 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/snapshot.h
+587 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-32/SnP-Relaned.h
+588 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/SnP-Relaned.h
+589 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/status.h
+590 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/port-libuv/stdint-msvc2008.h
+591 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/port/win/stdint.h
+592 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/table_builder.h
+593 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/table_cache.h
+594 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/table.h
+595 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/testharness.h
+596 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/testrand_impl.h
+597 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/testrand.h
+598 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/modules/ecdh/tests_impl.h
+599 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/modules/recovery/tests_impl.h
+600 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/util/testutil.h
+601 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/port/thread_annotations.h
+602 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/table/two_level_iterator.h
+603 silly gunzTarPerm extractEntry node_modules/node-addon-api/src/util-inl.h
+604 silly gunzTarPerm extractEntry node_modules/node-addon-api/src/util.h
+605 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/util.h
+606 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/port-libuv/uv_condvar.h
+607 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/version_edit.h
+608 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/version_set.h
+609 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/port-libuv/win_logger.h
+610 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/db/write_batch_internal.h
+611 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/include/leveldb/write_batch.h
+612 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/cmake/config.h.in
+613 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/libsecp256k1.pc.in
+614 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/snappy-stubs-public.h.in
+615 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-32/KeccakSponge.inc
+616 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/KeccakSponge.inc
+617 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/modules/ecdh/Makefile.am.include
+618 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/modules/recovery/Makefile.am.include
+619 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/java/org/bitcoin/NativeSecp256k1.java
+620 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/java/org/bitcoin/NativeSecp256k1Test.java
+621 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/java/org/bitcoin/NativeSecp256k1Util.java
+622 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/src/java/org/bitcoin/Secp256k1Context.java
+623 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/_stream_duplex.js
+624 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/_stream_passthrough.js
+625 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/_stream_readable.js
+626 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/_stream_transform.js
+627 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/_stream_writable.js
+628 silly gunzTarPerm extractEntry node_modules/hash.js/.eslintrc.js
+629 silly gunzTarPerm extractEntry dist/node/0.js
+630 silly gunzTarPerm extractEntry dist/node/1.js
+631 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash/sha/1.js
+632 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash/sha/224.js
+633 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash/sha/256.js
+634 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash/sha/384.js
+635 silly gunzTarPerm extractEntry dist/node/4.js
+636 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash/sha/512.js
+637 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/abstract-chained-batch.js
+638 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/abstract-iterator.js
+639 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/abstract-leveldown.js
+640 silly gunzTarPerm extractEntry node_modules/brorand/test/api-test.js
+641 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/internal/streams/async_iterator.js
+642 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/async-iterator-test.js
+643 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/curve/base.js
+644 silly gunzTarPerm extractEntry node_modules/base64-js/base64js.min.js
+645 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/batch-test.js
+646 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/node_modules/node-gyp-build/bin.js
+647 silly gunzTarPerm extractEntry node_modules/node-gyp-build/bin.js
+648 silly gunzTarPerm extractEntry node_modules/leveldown/binding.js
+649 silly gunzTarPerm extractEntry node_modules/keccak/bindings.js
+650 silly gunzTarPerm extractEntry node_modules/secp256k1/bindings.js
+651 silly gunzTarPerm extractEntry node_modules/elliptic/node_modules/bn.js/lib/bn.js
+652 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/dist/browser.js
+653 silly gunzTarPerm extractEntry node_modules/util-deprecate/browser.js
+654 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/internal/streams/buffer_list.js
+655 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/node_modules/node-gyp-build/build-test.js
+656 silly gunzTarPerm extractEntry node_modules/node-gyp-build/build-test.js
+657 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/chained-batch-test.js
+658 silly gunzTarPerm extractEntry node_modules/leveldown/chained-batch.js
+659 silly gunzTarPerm extractEntry node_modules/node-addon-api/tools/check-napi.js
+660 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/clear-range-test.js
+661 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/clear-test.js
+662 silly gunzTarPerm extractEntry dist/node/cli.js
+663 silly gunzTarPerm extractEntry node_modules/level-supports/test/cloneable.js
+664 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/close-test.js
+665 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/lib/common.js
+666 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/common.js
+667 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash/common.js
+668 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash/sha/common.js
+669 silly gunzTarPerm extractEntry node_modules/node-addon-api/tools/conversion.js
+670 silly gunzTarPerm extractEntry dist/node/core.js
+671 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/curves.js
+672 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/del-test.js
+673 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/internal/streams/destroy.js
+674 silly gunzTarPerm extractEntry node_modules/hmac-drbg/test/drbg-test.js
+675 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/curve/edwards.js
+676 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic.js
+677 silly gunzTarPerm extractEntry node_modules/secp256k1/elliptic.js
+678 silly gunzTarPerm extractEntry node_modules/secp256k1/lib/elliptic.js
+679 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/internal/streams/end-of-stream.js
+680 silly gunzTarPerm extractEntry node_modules/readable-stream/errors-browser.js
+681 silly gunzTarPerm extractEntry node_modules/readable-stream/errors.js
+682 silly gunzTarPerm extractEntry node_modules/napi-macros/example/example.js
+683 silly gunzTarPerm extractEntry node_modules/readable-stream/experimentalWarning.js
+684 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/factory-test.js
+685 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/internal/streams/from-browser.js
+686 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/internal/streams/from.js
+687 silly gunzTarPerm extractEntry dist/web/ganache.min.js
+688 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/get-many-test.js
+689 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/get-test.js
+690 silly gunzTarPerm extractEntry node_modules/hash.js/test/hash-test.js
+691 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash.js
+692 silly gunzTarPerm extractEntry node_modules/hmac-drbg/lib/hmac-drbg.js
+693 silly gunzTarPerm extractEntry node_modules/hash.js/test/hmac-test.js
+694 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash/hmac.js
+695 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/node_modules/node-gyp-build/index.js
+696 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/index.js
+697 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/index.js
+698 silly gunzTarPerm extractEntry node_modules/base64-js/index.js
+699 silly gunzTarPerm extractEntry node_modules/brorand/index.js
+700 silly gunzTarPerm extractEntry node_modules/buffer/index.js
+701 silly gunzTarPerm extractEntry node_modules/catering/index.js
+702 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/curve/index.js
+703 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/ec/index.js
+704 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/eddsa/index.js
+705 silly gunzTarPerm extractEntry node_modules/ieee754/index.js
+706 silly gunzTarPerm extractEntry node_modules/is-buffer/index.js
+707 silly gunzTarPerm extractEntry node_modules/keccak/index.js
+708 silly gunzTarPerm extractEntry node_modules/keccak/lib/api/index.js
+709 silly gunzTarPerm extractEntry node_modules/level-concat-iterator/index.js
+710 silly gunzTarPerm extractEntry node_modules/level-supports/index.js
+711 silly gunzTarPerm extractEntry node_modules/level-supports/test/index.js
+712 silly gunzTarPerm extractEntry node_modules/minimalistic-assert/index.js
+713 silly gunzTarPerm extractEntry node_modules/napi-macros/index.js
+714 silly gunzTarPerm extractEntry node_modules/node-addon-api/index.js
+715 silly gunzTarPerm extractEntry node_modules/node-gyp-build/index.js
+716 silly gunzTarPerm extractEntry node_modules/queue-microtask/index.js
+717 silly gunzTarPerm extractEntry node_modules/safe-buffer/index.js
+718 silly gunzTarPerm extractEntry node_modules/secp256k1/index.js
+719 silly gunzTarPerm extractEntry node_modules/secp256k1/lib/index.js
+720 silly gunzTarPerm extractEntry node_modules/inherits/inherits_browser.js
+721 silly gunzTarPerm extractEntry node_modules/inherits/inherits.js
+722 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/iterator-no-snapshot-test.js
+723 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/iterator-range-test.js
+724 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/iterator-seek-test.js
+725 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/iterator-snapshot-test.js
+726 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/iterator-test.js
+727 silly gunzTarPerm extractEntry node_modules/leveldown/iterator.js
+728 silly gunzTarPerm extractEntry node_modules/keccak/js.js
+729 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/karma.conf.js
+730 silly gunzTarPerm extractEntry node_modules/keccak/lib/keccak-state-reference.js
+731 silly gunzTarPerm extractEntry node_modules/keccak/lib/keccak-state-unroll.js
+732 silly gunzTarPerm extractEntry node_modules/keccak/lib/api/keccak.js
+733 silly gunzTarPerm extractEntry node_modules/keccak/lib/keccak.js
+734 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/ec/key.js
+735 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/eddsa/key.js
+736 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/leveldown-test.js
+737 silly gunzTarPerm extractEntry node_modules/leveldown/leveldown.js
+738 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/manifest-test.js
+739 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/curve/mont.js
+740 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/next-tick-browser.js
+741 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/next-tick.js
+742 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/dist/node.js
+743 silly gunzTarPerm extractEntry node_modules/util-deprecate/node.js
+744 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/open-create-if-missing-test.js
+745 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/open-error-if-exists-test.js
+746 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/open-test.js
+747 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/node_modules/node-gyp-build/optional.js
+748 silly gunzTarPerm extractEntry node_modules/node-gyp-build/optional.js
+749 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/internal/streams/pipeline.js
+750 silly gunzTarPerm extractEntry node_modules/queue-tick/process-next-tick.js
+751 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/put-get-del-test.js
+752 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/put-test.js
+753 silly gunzTarPerm extractEntry node_modules/queue-tick/queue-microtask.js
+754 silly gunzTarPerm extractEntry node_modules/readable-stream/readable-browser.js
+755 silly gunzTarPerm extractEntry node_modules/readable-stream/readable.js
+756 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash/ripemd.js
+757 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/rollup.config.js
+758 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/precomputed/secp256k1.js
+759 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/self.js
+760 silly gunzTarPerm extractEntry node_modules/level-supports/test/self.js
+761 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash/sha.js
+762 silly gunzTarPerm extractEntry node_modules/keccak/lib/api/shake.js
+763 silly gunzTarPerm extractEntry node_modules/level-supports/test/shape.js
+764 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/curve/short.js
+765 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/ec/signature.js
+766 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/eddsa/signature.js
+767 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/internal/streams/state.js
+768 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/internal/streams/stream-browser.js
+769 silly gunzTarPerm extractEntry node_modules/readable-stream/lib/internal/streams/stream.js
+770 silly gunzTarPerm extractEntry node_modules/string_decoder/lib/string_decoder.js
+771 silly gunzTarPerm extractEntry node_modules/queue-tick/test.js
+772 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/test/util.js
+773 silly gunzTarPerm extractEntry node_modules/minimalistic-crypto-utils/test/utils-test.js
+774 silly gunzTarPerm extractEntry node_modules/elliptic/lib/elliptic/utils.js
+775 silly gunzTarPerm extractEntry node_modules/hash.js/lib/hash/utils.js
+776 silly gunzTarPerm extractEntry node_modules/minimalistic-crypto-utils/lib/utils.js
+777 silly gunzTarPerm extractEntry node_modules/hmac-drbg/test/fixtures/hmac-drbg-nist.json
+778 silly gunzTarPerm extractEntry npm-shrinkwrap.json
+779 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/node_modules/node-gyp-build/package.json
+780 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/package.json
+781 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/package.json
+782 silly gunzTarPerm extractEntry node_modules/base64-js/package.json
+783 silly gunzTarPerm extractEntry node_modules/brorand/package.json
+784 silly gunzTarPerm extractEntry node_modules/buffer/package.json
+785 silly gunzTarPerm extractEntry node_modules/catering/package.json
+786 silly gunzTarPerm extractEntry node_modules/elliptic/node_modules/bn.js/package.json
+787 silly gunzTarPerm extractEntry node_modules/elliptic/package.json
+788 silly gunzTarPerm extractEntry node_modules/hash.js/package.json
+789 silly gunzTarPerm extractEntry node_modules/hmac-drbg/package.json
+790 silly gunzTarPerm extractEntry node_modules/ieee754/package.json
+791 silly gunzTarPerm extractEntry node_modules/inherits/package.json
+792 silly gunzTarPerm extractEntry node_modules/is-buffer/package.json
+793 silly gunzTarPerm extractEntry node_modules/keccak/package.json
+794 silly gunzTarPerm extractEntry node_modules/level-concat-iterator/package.json
+795 silly gunzTarPerm extractEntry node_modules/level-supports/package.json
+796 silly gunzTarPerm extractEntry node_modules/leveldown/package.json
+797 silly gunzTarPerm extractEntry node_modules/minimalistic-assert/package.json
+798 silly gunzTarPerm extractEntry node_modules/minimalistic-crypto-utils/package.json
+799 silly gunzTarPerm extractEntry node_modules/napi-macros/example/package.json
+800 silly gunzTarPerm extractEntry node_modules/napi-macros/package.json
+801 silly gunzTarPerm extractEntry node_modules/node-addon-api/package.json
+802 silly gunzTarPerm extractEntry node_modules/node-gyp-build/package.json
+803 silly gunzTarPerm extractEntry node_modules/queue-microtask/package.json
+804 silly gunzTarPerm extractEntry node_modules/queue-tick/package.json
+805 silly gunzTarPerm extractEntry node_modules/readable-stream/package.json
+806 silly gunzTarPerm extractEntry node_modules/safe-buffer/package.json
+807 silly gunzTarPerm extractEntry node_modules/secp256k1/package.json
+808 silly gunzTarPerm extractEntry node_modules/string_decoder/package.json
+809 silly gunzTarPerm extractEntry node_modules/util-deprecate/package.json
+810 silly gunzTarPerm extractEntry package.json
+811 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/tsconfig.json
+812 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/build-aux/m4/ax_jni_include_dir.m4
+813 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/build-aux/m4/ax_prog_cc_for_build.m4
+814 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/build-aux/m4/bitcoin_secp.m4
+815 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/KeccakP-1600-64.macros
+816 silly gunzTarPerm extractEntry node_modules/keccak/src/libkeccak-64/KeccakP-1600-unrolling.macros
+817 silly gunzTarPerm extractEntry dist/node/0.js.map
+818 silly gunzTarPerm extractEntry dist/node/1.js.map
+819 silly gunzTarPerm extractEntry dist/node/4.js.map
+820 silly gunzTarPerm extractEntry dist/node/cli.js.map
+821 silly gunzTarPerm extractEntry dist/node/core.js.map
+822 silly gunzTarPerm extractEntry dist/web/ganache.min.js.map
+823 silly gunzTarPerm extractEntry node_modules/secp256k1/API.md
+824 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/array_buffer.md
+825 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/async_context.md
+826 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/async_operations.md
+827 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/async_progress_worker.md
+828 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/async_worker.md
+829 silly gunzTarPerm extractEntry node_modules/buffer/AUTHORS.md
+830 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/basic_types.md
+831 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/bigint.md
+832 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/boolean.md
+833 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/buffer.md
+834 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/callback_scope.md
+835 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/callbackinfo.md
+836 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/CHANGELOG.md
+837 silly gunzTarPerm extractEntry node_modules/level-concat-iterator/CHANGELOG.md
+838 silly gunzTarPerm extractEntry node_modules/level-supports/CHANGELOG.md
+839 silly gunzTarPerm extractEntry node_modules/leveldown/CHANGELOG.md
+840 silly gunzTarPerm extractEntry node_modules/node-addon-api/CHANGELOG.md
+841 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/checker-tool.md
+842 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/class_property_descriptor.md
+843 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/cmake-js.md
+844 silly gunzTarPerm extractEntry node_modules/node-addon-api/CODE_OF_CONDUCT.md
+845 silly gunzTarPerm extractEntry node_modules/node-addon-api/CONTRIBUTING.md
+846 silly gunzTarPerm extractEntry node_modules/readable-stream/CONTRIBUTING.md
+847 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/conversion-tool.md
+848 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/creating_a_release.md
+849 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/dataview.md
+850 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/date.md
+851 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/env.md
+852 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/error_handling.md
+853 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/error.md
+854 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/escapable_handle_scope.md
+855 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/external.md
+856 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/function_reference.md
+857 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/function.md
+858 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/generator.md
+859 silly gunzTarPerm extractEntry node_modules/readable-stream/GOVERNANCE.md
+860 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/handle_scope.md
+861 silly gunzTarPerm extractEntry node_modules/util-deprecate/History.md
+862 silly gunzTarPerm extractEntry node_modules/node-addon-api/LICENSE.md
+863 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/memory_management.md
+864 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/node-gyp.md
+865 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/number.md
+866 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/object_lifetime_management.md
+867 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/object_reference.md
+868 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/object_wrap.md
+869 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/object.md
+870 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/prebuild_tools.md
+871 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/promises.md
+872 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/property_descriptor.md
+873 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/range_error.md
+874 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/node_modules/node-gyp-build/README.md
+875 silly gunzTarPerm extractEntry node_modules/@trufflesuite/bigint-buffer/README.md
+876 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/README.md
+877 silly gunzTarPerm extractEntry node_modules/base64-js/README.md
+878 silly gunzTarPerm extractEntry node_modules/brorand/README.md
+879 silly gunzTarPerm extractEntry node_modules/buffer/README.md
+880 silly gunzTarPerm extractEntry node_modules/catering/readme.md
+881 silly gunzTarPerm extractEntry node_modules/elliptic/node_modules/bn.js/README.md
+882 silly gunzTarPerm extractEntry node_modules/elliptic/README.md
+883 silly gunzTarPerm extractEntry node_modules/hash.js/README.md
+884 silly gunzTarPerm extractEntry node_modules/hmac-drbg/README.md
+885 silly gunzTarPerm extractEntry node_modules/ieee754/README.md
+886 silly gunzTarPerm extractEntry node_modules/inherits/README.md
+887 silly gunzTarPerm extractEntry node_modules/is-buffer/README.md
+888 silly gunzTarPerm extractEntry node_modules/keccak/README.md
+889 silly gunzTarPerm extractEntry node_modules/keccak/src/README.md
+890 silly gunzTarPerm extractEntry node_modules/level-concat-iterator/README.md
+891 silly gunzTarPerm extractEntry node_modules/level-supports/README.md
+892 silly gunzTarPerm extractEntry node_modules/leveldown/deps/leveldb/leveldb-1.20/README.md
+893 silly gunzTarPerm extractEntry node_modules/leveldown/deps/snappy/snappy/README.md
+894 silly gunzTarPerm extractEntry node_modules/leveldown/README.md
+895 silly gunzTarPerm extractEntry node_modules/minimalistic-assert/readme.md
+896 silly gunzTarPerm extractEntry node_modules/minimalistic-crypto-utils/README.md
+897 silly gunzTarPerm extractEntry node_modules/napi-macros/README.md
+898 silly gunzTarPerm extractEntry node_modules/node-addon-api/README.md
+899 silly gunzTarPerm extractEntry node_modules/node-addon-api/tools/README.md
+900 silly gunzTarPerm extractEntry node_modules/node-gyp-build/README.md
+901 silly gunzTarPerm extractEntry node_modules/queue-microtask/README.md
+902 silly gunzTarPerm extractEntry node_modules/queue-tick/README.md
+903 silly gunzTarPerm extractEntry node_modules/readable-stream/README.md
+904 silly gunzTarPerm extractEntry node_modules/safe-buffer/README.md
+905 silly gunzTarPerm extractEntry node_modules/secp256k1/README.md
+906 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/README.md
+907 silly gunzTarPerm extractEntry node_modules/string_decoder/README.md
+908 silly gunzTarPerm extractEntry node_modules/util-deprecate/README.md
+909 silly gunzTarPerm extractEntry README.md
+910 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/reference.md
+911 silly gunzTarPerm extractEntry node_modules/secp256k1/src/secp256k1/SECURITY.md
+912 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/setup.md
+913 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/string.md
+914 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/symbol.md
+915 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/threadsafe_function.md
+916 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/type_error.md
+917 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/typed_array_of.md
+918 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/typed_array.md
+919 silly gunzTarPerm extractEntry node_modules/abstract-leveldown/UPGRADING.md
+920 silly gunzTarPerm extractEntry node_modules/level-concat-iterator/UPGRADING.md
+921 silly gunzTarPerm extractEntry node_modules/leveldown/UPGRADING.md
+922 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/value.md
+923 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/version_management.md
+924 silly gunzTarPerm extractEntry node_modules/node-addon-api/doc/working_with_javascript_values.md
+925 silly gunzTarPerm extractEntry dist/node/+Ae9qz+4.node
+926 silly gunzTarPerm extractEntry dist/node/+BrWsgse.node
+927 silly gunzTarPerm extractEntry dist/node/6X3N2Ihk.node
+928 silly gunzTarPerm extractEntry dist/node/713kXDd+.node
+929 silly gunzTarPerm extractEntry dist/node/af3wX+OZ.node
+930 silly gunzTarPerm extractEntry dist/node/AzvRHFuh.node
+931 silly gunzTarPerm extractEntry dist/node/B68k9Ipl.node
+932 silly gunzTarPerm extractEntry dist/node/EVPNxlPM.node
+933 silly gunzTarPerm extractEntry node_modules/leveldown/prebuilds/linux-arm/node.napi.armv6.node
+934 silly gunzTarPerm extractEntry node_modules/leveldown/prebuilds/android-arm/node.napi.armv7.node
+935 silly gunzTarPerm extractEntry node_modules/leveldown/prebuilds/linux-arm/node.napi.armv7.node
+936 silly gunzTarPerm extractEntry node_modules/leveldown/prebuilds/android-arm64/node.napi.armv8.node
+937 silly gunzTarPerm extractEntry node_modules/leveldown/prebuilds/linux-arm64/node.napi.armv8.node
+938 silly gunzTarPerm extractEntry node_modules/keccak/prebuilds/linux-x64/node.napi.glibc.node
+939 silly gunzTarPerm extractEntry node_modules/leveldown/prebuilds/linux-x64/node.napi.glibc.node
+940 silly gunzTarPerm extractEntry node_modules/secp256k1/prebuilds/linux-x64/node.napi.glibc.node
+941 silly gunzTarPerm extractEntry node_modules/keccak/prebuilds/linux-x64/node.napi.musl.node
+942 silly gunzTarPerm extractEntry node_modules/leveldown/prebuilds/linux-x64/node.napi.musl.node
+943 http 304 https://registry.npmjs.org/mocha
+944 verbose headers { date: 'Sun, 26 Feb 2023 08:54:53 GMT',
+944 verbose headers   connection: 'keep-alive',
+944 verbose headers   'cf-ray': '79f77566bab3ceed-SJC',
+944 verbose headers   'cache-control': 'public, max-age=300',
+944 verbose headers   etag: '"56510969684678306098bfe22c46a6ad"',
+944 verbose headers   'last-modified': 'Sun, 12 Feb 2023 08:12:10 GMT',
+944 verbose headers   vary: 'Accept-Encoding',
+944 verbose headers   'cf-cache-status': 'REVALIDATED',
+944 verbose headers   'x-amz-replication-status': 'COMPLETED',
+944 verbose headers   'x-amz-server-side-encryption': 'AES256',
+944 verbose headers   server: 'cloudflare' }
+945 silly get cb [ 304,
+945 silly get   { date: 'Sun, 26 Feb 2023 08:54:53 GMT',
+945 silly get     connection: 'keep-alive',
+945 silly get     'cf-ray': '79f77566bab3ceed-SJC',
+945 silly get     'cache-control': 'public, max-age=300',
+945 silly get     etag: '"56510969684678306098bfe22c46a6ad"',
+945 silly get     'last-modified': 'Sun, 12 Feb 2023 08:12:10 GMT',
+945 silly get     vary: 'Accept-Encoding',
+945 silly get     'cf-cache-status': 'REVALIDATED',
+945 silly get     'x-amz-replication-status': 'COMPLETED',
+945 silly get     'x-amz-server-side-encryption': 'AES256',
+945 silly get     server: 'cloudflare' } ]
+946 verbose etag https://registry.npmjs.org/mocha from cache
+947 verbose get saving mocha to /home/wangminqi/.npm/registry.npmjs.org/mocha/.cache.json
+948 verbose stack Error: Missing required argument #1
+948 verbose stack     at andLogAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:31:3)
+948 verbose stack     at fetchPackageMetadata (/usr/share/npm/lib/fetch-package-metadata.js:51:22)
+948 verbose stack     at resolveWithNewModule (/usr/share/npm/lib/install/deps.js:456:12)
+948 verbose stack     at /usr/share/npm/lib/install/deps.js:457:7
+948 verbose stack     at /usr/share/npm/node_modules/iferr/index.js:13:50
+948 verbose stack     at /usr/share/npm/lib/fetch-package-metadata.js:37:12
+948 verbose stack     at addRequestedAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:82:5)
+948 verbose stack     at returnAndAddMetadata (/usr/share/npm/lib/fetch-package-metadata.js:117:7)
+948 verbose stack     at pickVersionFromRegistryDocument (/usr/share/npm/lib/fetch-package-metadata.js:134:20)
+948 verbose stack     at /usr/share/npm/node_modules/iferr/index.js:13:50
+949 verbose cwd /mnt/d/SourceTree/ChainBridge_solidity
+950 error Linux 5.4.72-microsoft-standard-WSL2
+951 error argv "/usr/bin/node" "/usr/bin/npm" "install" "--global" "truffle"
+952 error node v8.10.0
+953 error npm  v3.5.2
+954 error code EMISSINGARG
+955 error typeerror Error: Missing required argument #1
+955 error typeerror     at andLogAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:31:3)
+955 error typeerror     at fetchPackageMetadata (/usr/share/npm/lib/fetch-package-metadata.js:51:22)
+955 error typeerror     at resolveWithNewModule (/usr/share/npm/lib/install/deps.js:456:12)
+955 error typeerror     at /usr/share/npm/lib/install/deps.js:457:7
+955 error typeerror     at /usr/share/npm/node_modules/iferr/index.js:13:50
+955 error typeerror     at /usr/share/npm/lib/fetch-package-metadata.js:37:12
+955 error typeerror     at addRequestedAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:82:5)
+955 error typeerror     at returnAndAddMetadata (/usr/share/npm/lib/fetch-package-metadata.js:117:7)
+955 error typeerror     at pickVersionFromRegistryDocument (/usr/share/npm/lib/fetch-package-metadata.js:134:20)
+955 error typeerror     at /usr/share/npm/node_modules/iferr/index.js:13:50
+956 error typeerror This is an error with npm itself. Please report this error at:
+956 error typeerror     <http://github.com/npm/npm/issues>
+957 verbose exit [ 1, true ]

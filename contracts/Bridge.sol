@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity 0.7.0;
 pragma experimental ABIEncoderV2;
 
@@ -17,7 +18,9 @@ contract Bridge is Pausable, AccessControl, SafeMath {
 
     uint8   public _chainID;
     uint256 public _relayerThreshold;
-    uint256 public _totalRelayers;
+
+    // // This parameter is safe to be removed and duplicate to getRoleMemberCount(bytes32) 
+    // uint256 public _totalRelayers;
     uint256 public _totalProposals;
     uint256 public _fee;
     uint256 public _expiry;
@@ -47,8 +50,11 @@ contract Bridge is Pausable, AccessControl, SafeMath {
     mapping(uint72 => mapping(bytes32 => mapping(address => bool))) public _hasVotedOnProposal;
 
     event RelayerThresholdChanged(uint indexed newThreshold);
-    event RelayerAdded(address indexed relayer);
-    event RelayerRemoved(address indexed relayer);
+    // // Save gas fee since contract will generate event RoleGranted(role, account, _msgSender())
+    // // When add/remove any role 
+    // // TODO: Clean up the comment
+    // event RelayerAdded(address indexed relayer);
+    // event RelayerRemoved(address indexed relayer);
     event Deposit(
         uint8   indexed destinationChainID,
         bytes32 indexed resourceID,
@@ -70,33 +76,27 @@ contract Bridge is Pausable, AccessControl, SafeMath {
     );
 
     bytes32 public constant RELAYER_ROLE = keccak256("RELAYER_ROLE");
+    bytes32 public constant EXECUTOR_ROLE = keccak256("EXECUTOR_ROLE");
 
     modifier onlyAdmin() {
-        _onlyAdmin();
+        require(hasRole(DEFAULT_ADMIN_ROLE, msg.sender), "sender doesn't have admin role");
         _;
     }
 
     modifier onlyAdminOrRelayer() {
-        _onlyAdminOrRelayer();
+        require(hasRole(DEFAULT_ADMIN_ROLE, msg.sender) || hasRole(RELAYER_ROLE, msg.sender),
+            "sender is not relayer or admin");
         _;
     }
 
     modifier onlyRelayers() {
-        _onlyRelayers();
+        require(hasRole(RELAYER_ROLE, msg.sender), "sender doesn't have relayer role");
         _;
     }
 
-    function _onlyAdminOrRelayer() private {
-        require(hasRole(DEFAULT_ADMIN_ROLE, msg.sender) || hasRole(RELAYER_ROLE, msg.sender),
-            "sender is not relayer or admin");
-    }
-
-    function _onlyAdmin() private {
-        require(hasRole(DEFAULT_ADMIN_ROLE, msg.sender), "sender doesn't have admin role");
-    }
-
-    function _onlyRelayers() private {
-        require(hasRole(RELAYER_ROLE, msg.sender), "sender doesn't have relayer role");
+    modifier onlyExecutorOrAbove() {
+        require(hasRole(RELAYER_ROLE, msg.sender) || hasRole(EXECUTOR_ROLE, msg.sender) || hasRole(DEFAULT_ADMIN_ROLE, msg.sender), "sender doesn't have executor role");
+        _;
     }
 
     /**
@@ -106,7 +106,7 @@ contract Bridge is Pausable, AccessControl, SafeMath {
         @param initialRelayers Addresses that should be initially granted the relayer role.
         @param initialRelayerThreshold Number of votes needed for a deposit proposal to be considered passed.
      */
-    constructor (uint8 chainID, address[] memory initialRelayers, uint initialRelayerThreshold, uint256 fee, uint256 expiry) public {
+    constructor (uint8 chainID, address[] memory initialRelayers, uint initialRelayerThreshold, uint256 fee, uint256 expiry) {
         _chainID = chainID;
         _relayerThreshold = initialRelayerThreshold;
         _fee = fee;
@@ -115,10 +115,14 @@ contract Bridge is Pausable, AccessControl, SafeMath {
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setRoleAdmin(RELAYER_ROLE, DEFAULT_ADMIN_ROLE);
 
+        // Relayer can add or remove External Executor
+        _setupRole(EXECUTOR_ROLE, msg.sender);
+        _setRoleAdmin(EXECUTOR_ROLE, RELAYER_ROLE);
+
         uint initialRelayerCount = initialRelayers.length;
         for (uint i; i < initialRelayerCount; i++) {
             grantRole(RELAYER_ROLE, initialRelayers[i]);
-            _totalRelayers++;
+            // _totalRelayers++;
         }
 
     }
@@ -169,29 +173,45 @@ contract Bridge is Pausable, AccessControl, SafeMath {
     }
 
     /**
-        @notice Grants {relayerAddress} the relayer role and increases {_totalRelayer} count.
+        @notice Grants {relayerAddress} the relayer role.
         @notice Only callable by an address that currently has the admin role.
         @param relayerAddress Address of relayer to be added.
-        @notice Emits {RelayerAdded} event.
      */
     function adminAddRelayer(address relayerAddress) external onlyAdmin {
         require(!hasRole(RELAYER_ROLE, relayerAddress), "addr already has relayer role!");
         grantRole(RELAYER_ROLE, relayerAddress);
-        emit RelayerAdded(relayerAddress);
-        _totalRelayers++;
+        // _totalRelayers++;
     }
 
     /**
-        @notice Removes relayer role for {relayerAddress} and decreases {_totalRelayer} count.
+        @notice Removes relayer role for {relayerAddress}.
         @notice Only callable by an address that currently has the admin role.
         @param relayerAddress Address of relayer to be removed.
-        @notice Emits {RelayerRemoved} event.
      */
     function adminRemoveRelayer(address relayerAddress) external onlyAdmin {
         require(hasRole(RELAYER_ROLE, relayerAddress), "addr doesn't have relayer role!");
         revokeRole(RELAYER_ROLE, relayerAddress);
-        emit RelayerRemoved(relayerAddress);
-        _totalRelayers--;
+        // _totalRelayers--;
+    }
+
+        /**
+        @notice Grants {executorAddress} the executor role.
+        @notice Only callable by an address that currently has the relayer role.
+        @param executorAddress Address of executor to be added.
+     */
+    function relayerAddExecutor(address executorAddress) external onlyRelayers {
+        require(!hasRole(EXECUTOR_ROLE, executorAddress), "addr already has relayer role!");
+        grantRole(EXECUTOR_ROLE, executorAddress);
+    }
+
+    /**
+        @notice Removes relayer role for {executorAddress}.
+        @notice Only callable by an address that currently has the relayer role.
+        @param executorAddress Address of executor to be removed.
+     */
+    function relayerRemoveExecutor(address executorAddress) external onlyRelayers {
+        require(hasRole(EXECUTOR_ROLE, executorAddress), "addr doesn't have relayer role!");
+        revokeRole(EXECUTOR_ROLE, executorAddress);
     }
 
     /**
@@ -266,6 +286,15 @@ contract Bridge is Pausable, AccessControl, SafeMath {
     }
 
     /**
+        @notice Changes xpiry.
+        @notice Only callable by admin.
+        @param newExpiry Value {_expiry} will be updated to.
+     */
+    function adminExpiry(uint newExpiry) external onlyAdmin {
+        _expiry = newExpiry;
+    }
+
+    /**
         @notice Used to manually withdraw funds from ERC safes.
         @param handlerAddress Address of handler to withdraw from.
         @param tokenAddress Address of token to withdraw.
@@ -310,14 +339,15 @@ contract Bridge is Pausable, AccessControl, SafeMath {
         @notice Only callable by relayers when Bridge is not paused.
         @param chainID ID of chain deposit originated from.
         @param depositNonce ID of deposited generated by origin Bridge contract.
-        @param dataHash Hash of data provided when deposit was made.
+        @param data Data provided when deposit was made.
         @notice Proposal must not have already been passed or executed.
         @notice {msg.sender} must not have already voted on proposal.
         @notice Emits {ProposalEvent} event with status indicating the proposal status.
         @notice Emits {ProposalVote} event.
      */
-    function voteProposal(uint8 chainID, uint64 depositNonce, bytes32 resourceID, bytes32 dataHash) external onlyRelayers whenNotPaused {
-
+    function voteProposal(uint8 chainID, uint64 depositNonce, bytes32 resourceID, bytes calldata data) external onlyRelayers whenNotPaused {
+        address handler = _resourceIDToHandlerAddress[resourceID];
+        bytes32 dataHash = keccak256(abi.encodePacked(handler, data));
         uint72 nonceAndID = (uint72(depositNonce) << 8) | uint72(chainID);
         Proposal storage proposal = _proposals[nonceAndID][dataHash];
 
@@ -345,10 +375,12 @@ contract Bridge is Pausable, AccessControl, SafeMath {
                 proposal._status = ProposalStatus.Cancelled;
                 emit ProposalEvent(chainID, depositNonce, ProposalStatus.Cancelled, resourceID, dataHash);
             } else {
-                require(dataHash == proposal._dataHash, "datahash mismatch");
+                // // dataHash is never manually provided, so no need to check anymore
+                // require(dataHash == proposal._dataHash, "datahash mismatch");
+                // I think there is a risk, we should not vote without checking resourceID
+                // Otherwise, Relayer can initialize a proposal with right data but wrong resourceID and lure other relayers to vote 
+                require(proposal._resourceID == resourceID, "Cheating Risk; Relayer vote with wrong resourceID");
                 proposal._yesVotes.push(msg.sender);
-
-
             }
 
         }
@@ -359,9 +391,14 @@ contract Bridge is Pausable, AccessControl, SafeMath {
             // If _depositThreshold is set to 1, then auto finalize
             // or if _relayerThreshold has been exceeded
             if (_relayerThreshold <= 1 || proposal._yesVotes.length >= _relayerThreshold) {
-                proposal._status = ProposalStatus.Passed;
-
-                emit ProposalEvent(chainID, depositNonce, ProposalStatus.Passed, resourceID, dataHash);
+                if (_executeProposal(data, resourceID)) {
+                    proposal._status = ProposalStatus.Executed;
+                    emit ProposalEvent(chainID, depositNonce, ProposalStatus.Executed, resourceID, dataHash);
+                } else {
+                    // If we can not execute due to any ERC20 Handler issue, then just make the proposal passed
+                    proposal._status = ProposalStatus.Passed;
+                    emit ProposalEvent(chainID, depositNonce, ProposalStatus.Passed, resourceID, dataHash);
+                }
             }
         }
 
@@ -390,7 +427,7 @@ contract Bridge is Pausable, AccessControl, SafeMath {
 
     /**
         @notice Executes a deposit proposal that is considered passed using a specified handler contract.
-        @notice Only callable by relayers when Bridge is not paused.
+        @notice callable by Executor or above when Bridge is not paused.
         @param chainID ID of chain deposit originated from.
         @param resourceID ResourceID to be used when making deposits.
         @param depositNonce ID of deposited generated by origin Bridge contract.
@@ -399,21 +436,37 @@ contract Bridge is Pausable, AccessControl, SafeMath {
         @notice Hash of {data} must equal proposal's {dataHash}.
         @notice Emits {ProposalEvent} event with status {Executed}.
      */
-    function executeProposal(uint8 chainID, uint64 depositNonce, bytes calldata data, bytes32 resourceID) external onlyRelayers whenNotPaused {
+    function executeProposal(uint8 chainID, uint64 depositNonce, bytes calldata data, bytes32 resourceID) external onlyExecutorOrAbove whenNotPaused {
         address handler = _resourceIDToHandlerAddress[resourceID];
         uint72 nonceAndID = (uint72(depositNonce) << 8) | uint72(chainID);
         bytes32 dataHash = keccak256(abi.encodePacked(handler, data));
         Proposal storage proposal = _proposals[nonceAndID][dataHash];
-
-        require(proposal._status == ProposalStatus.Passed, "proposal already transferred");
-        require(dataHash == proposal._dataHash, "data doesn't match datahash");
-
+        // We must check this. So if executor cheating and outrun a wrong resource id proposal 
+        require(proposal._resourceID == resourceID, "wrong resource id");
+        require(proposal._status == ProposalStatus.Passed, "proposal already transferred/not finalized yet");
+        
+        require(_executeProposal(data, resourceID), "Execution not successful");
         proposal._status = ProposalStatus.Executed;
+        emit ProposalEvent(chainID, depositNonce, ProposalStatus.Executed, resourceID, dataHash);
+    }
 
-        IDepositExecute depositHandler = IDepositExecute(_resourceIDToHandlerAddress[proposal._resourceID]);
-        depositHandler.executeProposal(proposal._resourceID, data);
-
-        emit ProposalEvent(chainID, depositNonce, proposal._status, proposal._resourceID, proposal._dataHash);
+     /**
+        @notice Executes a deposit proposal that is considered passed using a specified handler contract.
+        @notice This method itself does not change the status of proposal or emit event!
+        @notice Internal method not callable by public.
+        @param resourceID ResourceID to be used when making deposits.
+        @param data Data originally provided when deposit was made.
+        @return bool The result of handler execution:
+        @notice This method does not check if proposal is Passed status!
+        @notice Hash of {data} must equal proposal's {dataHash}.
+     */
+    function _executeProposal(bytes calldata data, bytes32 resourceID) internal returns (bool) {
+        IDepositExecute depositHandler = IDepositExecute(_resourceIDToHandlerAddress[resourceID]);
+        try depositHandler.executeProposal(resourceID, data) {
+            return true;
+        } catch {
+            return false;
+        }
     }
 
     /**

@@ -86,7 +86,7 @@ contract('E2E ERC20 - Same Chain', async accounts => {
             chainID,
             expectedDepositNonce,
             resourceID,
-            depositProposalDataHash,
+            depositProposalData,
             { from: relayer1Address }
         ));
 
@@ -97,18 +97,20 @@ contract('E2E ERC20 - Same Chain', async accounts => {
             chainID,
             expectedDepositNonce,
             resourceID,
-            depositProposalDataHash,
+            depositProposalData,
             { from: relayer2Address }
         ));
 
-        // relayer1 will execute the deposit proposal
-        TruffleAssert.passes(await BridgeInstance.executeProposal(
-            chainID,
-            expectedDepositNonce,
-            depositProposalData,
-            resourceID,
-            { from: relayer2Address }
-        ));
+        // // TODO: Add the execution method/middle status passed test
+        // // We do not need this here since execution should be triggered after vote
+        // // relayer1 will execute the deposit proposal
+        // TruffleAssert.passes(await BridgeInstance.executeProposal(
+        //     chainID,
+        //     expectedDepositNonce,
+        //     depositProposalData,
+        //     resourceID,
+        //     { from: relayer2Address }
+        // ));
 
         // Assert ERC20 balance was transferred from depositerAddress
         const depositerBalance = await ERC20MintableInstance.balanceOf(depositerAddress);

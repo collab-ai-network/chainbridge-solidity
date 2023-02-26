@@ -65,7 +65,7 @@ contract('Bridge - [voteProposal with relayerThreshold == 3]', async (accounts) 
             BridgeInstance.adminSetResource(DestinationERC20HandlerInstance.address, resourceID, DestinationERC20MintableInstance.address)
         ]);
 
-        vote = (relayer) => BridgeInstance.voteProposal(originChainID, expectedDepositNonce, resourceID, depositDataHash, {from: relayer});
+        vote = (relayer) => BridgeInstance.voteProposal(originChainID, expectedDepositNonce, resourceID, depositData, {from: relayer});
         executeProposal = (relayer) => BridgeInstance.executeProposal(originChainID, expectedDepositNonce, depositData, {from: relayer});
     });
 
@@ -74,7 +74,7 @@ contract('Bridge - [voteProposal with relayerThreshold == 3]', async (accounts) 
 
         assert.equal(await BridgeInstance._relayerThreshold(), relayerThreshold)
 
-        assert.equal((await BridgeInstance._totalRelayers()).toString(), '4')
+        assert.equal((await BridgeInstance.getRoleMemberCount(await BridgeInstance.RELAYER_ROLE())).toString(), '4')
 
         assert.equal(await BridgeInstance._expiry(), 10)
     })
