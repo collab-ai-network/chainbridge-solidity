@@ -31,7 +31,6 @@ contract('GenericHandler - [Execute Proposal]', async (accounts) => {
     let initialResourceIDs;
     let initialContractAddresses;
     let initialDepositFunctionSignatures;
-    let initialDepositFunctionDepositerOffsets;
     let initialExecuteFunctionSignatures;
     let GenericHandlerInstance;
     let resourceID;
@@ -49,7 +48,6 @@ contract('GenericHandler - [Execute Proposal]', async (accounts) => {
         initialResourceIDs = [resourceID];
         initialContractAddresses = [CentrifugeAssetInstance.address];
         initialDepositFunctionSignatures = [Helpers.blankFunctionSig];
-        initialDepositFunctionDepositerOffsets = [Helpers.blankFunctionDepositerOffset];
         initialExecuteFunctionSignatures = [centrifugeAssetFuncSig];
 
         GenericHandlerInstance = await GenericHandlerContract.new(
@@ -57,10 +55,9 @@ contract('GenericHandler - [Execute Proposal]', async (accounts) => {
             initialResourceIDs,
             initialContractAddresses,
             initialDepositFunctionSignatures,
-            initialDepositFunctionDepositerOffsets,
             initialExecuteFunctionSignatures);
 
-        await BridgeInstance.adminSetGenericResource(GenericHandlerInstance.address, resourceID,  initialContractAddresses[0], initialDepositFunctionSignatures[0], initialDepositFunctionDepositerOffsets[0], initialExecuteFunctionSignatures[0]);
+        await BridgeInstance.adminSetGenericResource(GenericHandlerInstance.address, resourceID,  initialContractAddresses[0], initialDepositFunctionSignatures[0], initialExecuteFunctionSignatures[0]);
 
         depositData = Helpers.createGenericDepositData(hashOfCentrifugeAsset);
         depositProposalDataHash = Ethers.utils.keccak256(GenericHandlerInstance.address + depositData.substr(2));
@@ -79,7 +76,7 @@ contract('GenericHandler - [Execute Proposal]', async (accounts) => {
             chainID,
             expectedDepositNonce,
             resourceID,
-            depositProposalDataHash,
+            depositData,
             { from: relayer1Address }
         ));
 
@@ -90,16 +87,7 @@ contract('GenericHandler - [Execute Proposal]', async (accounts) => {
             chainID,
             expectedDepositNonce,
             resourceID,
-            depositProposalDataHash,
-            { from: relayer2Address }
-        ));
-
-        // relayer1 will execute the deposit proposal
-        TruffleAssert.passes(await BridgeInstance.executeProposal(
-            chainID,
-            expectedDepositNonce,
             depositData,
-            resourceID,
             { from: relayer2Address }
         ));
         
@@ -120,27 +108,18 @@ contract('GenericHandler - [Execute Proposal]', async (accounts) => {
             chainID,
             expectedDepositNonce,
             resourceID,
-            depositProposalDataHash,
+            depositData,
             { from: relayer1Address }
         ));
 
         // relayer2 votes in favor of the deposit proposal
         // because the relayerThreshold is 2, the deposit proposal will go
         // into a finalized state
-        TruffleAssert.passes(await BridgeInstance.voteProposal(
+        const executeProposalTx = await BridgeInstance.voteProposal(
             chainID,
             expectedDepositNonce,
             resourceID,
-            depositProposalDataHash,
-            { from: relayer2Address }
-        ));
-
-        // relayer1 will execute the deposit proposal
-        const executeProposalTx = await BridgeInstance.executeProposal(
-            chainID,
-            expectedDepositNonce,
             depositData,
-            resourceID,
             { from: relayer2Address }
         );
 

@@ -53,7 +53,7 @@ contract('E2E ERC20 - Same Chain', async accounts => {
         
         await ERC20MintableInstance.approve(ERC20HandlerInstance.address, depositAmount, { from: depositerAddress });
 
-        depositData = Helpers.createERCDepositData(depositAmount, 20, recipientAddress)
+        depositData = Helpers.createERCDepositData(depositAmount, 32, recipientAddress)
         depositProposalData = Helpers.createERCDepositData(depositAmount, 20, recipientAddress)
         depositProposalDataHash = Ethers.utils.keccak256(ERC20HandlerInstance.address + depositProposalData.substr(2));
     });
@@ -86,7 +86,7 @@ contract('E2E ERC20 - Same Chain', async accounts => {
             chainID,
             expectedDepositNonce,
             resourceID,
-            depositProposalDataHash,
+            depositProposalData,
             { from: relayer1Address }
         ));
 
@@ -97,16 +97,7 @@ contract('E2E ERC20 - Same Chain', async accounts => {
             chainID,
             expectedDepositNonce,
             resourceID,
-            depositProposalDataHash,
-            { from: relayer2Address }
-        ));
-
-        // relayer1 will execute the deposit proposal
-        TruffleAssert.passes(await BridgeInstance.executeProposal(
-            chainID,
-            expectedDepositNonce,
             depositProposalData,
-            resourceID,
             { from: relayer2Address }
         ));
 

@@ -1,5 +1,5 @@
-pragma solidity 0.6.12;
-pragma experimental ABIEncoderV2;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.19;
 
 import "../interfaces/IDepositExecute.sol";
 import "./HandlerHelpers.sol";
@@ -11,8 +11,10 @@ import "../ERC20Safe.sol";
     @notice This contract is intended to be used with the Bridge contract.
  */
 contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
+
     struct DepositRecord {
         address _tokenAddress;
+        uint8    _lenDestinationRecipientAddress;
         uint8   _destinationChainID;
         bytes32 _resourceID;
         bytes   _destinationRecipientAddress;
@@ -20,7 +22,7 @@ contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
         uint    _amount;
     }
 
-    // destId => depositNonce => Deposit Record
+    // depositNonce => Deposit Record
     mapping (uint8 => mapping(uint64 => DepositRecord)) public _depositRecords;
 
     /**
@@ -40,17 +42,19 @@ contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
         bytes32[] memory initialResourceIDs,
         address[] memory initialContractAddresses,
         address[] memory burnableContractAddresses
-    ) public {
+    ) {
         require(initialResourceIDs.length == initialContractAddresses.length,
             "initialResourceIDs and initialContractAddresses len mismatch");
 
         _bridgeAddress = bridgeAddress;
 
-        for (uint256 i = 0; i < initialResourceIDs.length; i++) {
+        uint256 initialCount = initialResourceIDs.length;
+        for (uint256 i = 0; i < initialCount; i++) {
             _setResource(initialResourceIDs[i], initialContractAddresses[i]);
         }
 
-        for (uint256 i = 0; i < burnableContractAddresses.length; i++) {
+        uint256 burnableCount = burnableContractAddresses.length;
+        for (uint256 i = 0; i < burnableCount; i++) {
             _setBurnable(burnableContractAddresses[i]);
         }
     }
@@ -62,6 +66,7 @@ contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
         - _tokenAddress Address used when {deposit} was executed.
         - _destinationChainID ChainID deposited tokens are intended to end up on.
         - _resourceID ResourceID used when {deposit} was executed.
+        - _lenDestinationRecipientAddress Used to parse recipient's address from {_destinationRecipientAddress}
         - _destinationRecipientAddress Address tokens are intended to be deposited to on desitnation chain.
         - _depositer Address that initially called {deposit} in the Bridge contract.
         - _amount Amount of tokens that were deposited.
@@ -95,8 +100,20 @@ contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
         uint256        amount;
         uint256        lenRecipientAddress;
 
-        (amount, lenRecipientAddress) = abi.decode(data, (uint, uint));
-        recipientAddress = bytes(data[64:64 + lenRecipientAddress]);
+        assembly {
+
+            amount := calldataload(0xC4)
+
+            recipientAddress := mload(0x40)
+            lenRecipientAddress := calldataload(0xE4)
+            mstore(0x40, add(0x20, add(recipientAddress, lenRecipientAddress)))
+
+            calldatacopy(
+                recipientAddress, // copy to destinationRecipientAddress
+                0xE4, // copy from calldata @ 0x104
+                sub(calldatasize(), 0xE4) // copy size (calldatasize - 0x104)
+            )
+        }
 
         address tokenAddress = _resourceIDToTokenContractAddress[resourceID];
         require(_contractWhitelist[tokenAddress], "provided tokenAddress is not whitelisted");
@@ -109,6 +126,7 @@ contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
 
         _depositRecords[destinationChainID][depositNonce] = DepositRecord(
             tokenAddress,
+            uint8(lenRecipientAddress),
             destinationChainID,
             resourceID,
             recipientAddress,
@@ -129,11 +147,22 @@ contract ERC20Handler is IDepositExecute, HandlerHelpers, ERC20Safe {
      */
     function executeProposal(bytes32 resourceID, bytes calldata data) external override onlyBridge {
         uint256       amount;
-        uint256       lenDestinationRecipientAddress;
         bytes  memory destinationRecipientAddress;
 
-        (amount, lenDestinationRecipientAddress) = abi.decode(data, (uint, uint));
-        destinationRecipientAddress = bytes(data[64:64 + lenDestinationRecipientAddress]);
+        assembly {
+            amount := calldataload(0x64)
+
+            destinationRecipientAddress := mload(0x40)
+            let lenDestinationRecipientAddress := calldataload(0x84)
+            mstore(0x40, add(0x20, add(destinationRecipientAddress, lenDestinationRecipientAddress)))
+
+            // in the calldata the destinationRecipientAddress is stored at 0xC4 after accounting for the function signature and length declaration
+            calldatacopy(
+                destinationRecipientAddress, // copy to destinationRecipientAddress
+                0x84, // copy from calldata @ 0x84
+                sub(calldatasize(), 0x84) // copy size to the end of calldata
+            )
+        }
 
         bytes20 recipientAddress;
         address tokenAddress = _resourceIDToTokenContractAddress[resourceID];

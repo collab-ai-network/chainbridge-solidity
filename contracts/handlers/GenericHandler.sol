@@ -1,8 +1,7 @@
-pragma solidity 0.6.12;
-pragma experimental ABIEncoderV2;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.19;
 
 import "../interfaces/IGenericHandler.sol";
-
 /**
     @title Handles generic deposits and deposit executions.
     @author ChainSafe Systems.
@@ -18,7 +17,7 @@ contract GenericHandler is IGenericHandler {
         bytes   _metaData;
     }
 
-    // destId => depositNonce => Deposit Record
+    // depositNonce => Deposit Record
     mapping (uint8 => mapping(uint64 => DepositRecord)) public _depositRecords;
 
     // resourceID => contract address
@@ -29,9 +28,6 @@ contract GenericHandler is IGenericHandler {
 
     // contract address => deposit function signature
     mapping (address => bytes4) public _contractAddressToDepositFunctionSignature;
-
-    // contract address => depositer address position offset in the metadata
-    mapping (address => uint256) public _contractAddressToDepositFunctionDepositerOffset;
 
     // contract address => execute proposal function signature
     mapping (address => bytes4) public _contractAddressToExecuteFunctionSignature;
@@ -45,7 +41,7 @@ contract GenericHandler is IGenericHandler {
     }
 
     function _onlyBridge() private view {
-        require(msg.sender == _bridgeAddress, "sender must be bridge contract");
+         require(msg.sender == _bridgeAddress, "sender must be bridge contract");
     }
 
     /**
@@ -56,8 +52,6 @@ contract GenericHandler is IGenericHandler {
         called to perform deposit and execution calls.
         @param initialDepositFunctionSignatures These are the function signatures {initialContractAddresses} will point to,
         and are the function that will be called when executing {deposit}
-        @param initialDepositFunctionDepositerOffsets These are the offsets of depositer positions, inside of metadata used to call
-        {initialContractAddresses} when executing {deposit}
         @param initialExecuteFunctionSignatures These are the function signatures {initialContractAddresses} will point to,
         and are the function that will be called when executing {executeProposal}
 
@@ -72,9 +66,8 @@ contract GenericHandler is IGenericHandler {
         bytes32[] memory initialResourceIDs,
         address[] memory initialContractAddresses,
         bytes4[]  memory initialDepositFunctionSignatures,
-        uint256[] memory initialDepositFunctionDepositerOffsets,
         bytes4[]  memory initialExecuteFunctionSignatures
-    ) public {
+    ) {
         require(initialResourceIDs.length == initialContractAddresses.length,
             "initialResourceIDs and initialContractAddresses len mismatch");
 
@@ -84,9 +77,6 @@ contract GenericHandler is IGenericHandler {
         require(initialDepositFunctionSignatures.length == initialExecuteFunctionSignatures.length,
             "provided deposit and execute function signatures len mismatch");
 
-        require(initialDepositFunctionDepositerOffsets.length == initialExecuteFunctionSignatures.length,
-            "provided depositer offsets and function signatures len mismatch");
-
         _bridgeAddress = bridgeAddress;
 
         for (uint256 i = 0; i < initialResourceIDs.length; i++) {
@@ -94,7 +84,6 @@ contract GenericHandler is IGenericHandler {
                 initialResourceIDs[i],
                 initialContractAddresses[i],
                 initialDepositFunctionSignatures[i],
-                initialDepositFunctionDepositerOffsets[i],
                 initialExecuteFunctionSignatures[i]);
         }
     }
@@ -118,31 +107,28 @@ contract GenericHandler is IGenericHandler {
         then sets {_resourceIDToContractAddress} with {contractAddress},
         {_contractAddressToResourceID} with {resourceID},
         {_contractAddressToDepositFunctionSignature} with {depositFunctionSig},
-        {_contractAddressToDepositFunctionDepositerOffset} with {depositFunctionDepositerOffset},
         {_contractAddressToExecuteFunctionSignature} with {executeFunctionSig},
         and {_contractWhitelist} to true for {contractAddress}.
         @param resourceID ResourceID to be used when making deposits.
         @param contractAddress Address of contract to be called when a deposit is made and a deposited is executed.
         @param depositFunctionSig Function signature of method to be called in {contractAddress} when a deposit is made.
-        @param depositFunctionDepositerOffset Depositer address position offset in the metadata, in bytes.
         @param executeFunctionSig Function signature of method to be called in {contractAddress} when a deposit is executed.
      */
     function setResource(
         bytes32 resourceID,
         address contractAddress,
         bytes4 depositFunctionSig,
-        uint256 depositFunctionDepositerOffset,
         bytes4 executeFunctionSig
-    ) external onlyBridge override {
+    ) external onlyBridge {
 
-        _setResource(resourceID, contractAddress, depositFunctionSig, depositFunctionDepositerOffset, executeFunctionSig);
+        _setResource(resourceID, contractAddress, depositFunctionSig, executeFunctionSig);
     }
 
     /**
         @notice A deposit is initiatied by making a deposit in the Bridge contract.
         @param destinationChainID Chain ID deposit is expected to be bridged to.
         @param depositNonce This value is generated as an ID by the Bridge contract.
-        @param depositer Address of the account making deposit in the Bridge contract.
+        @param depositer Address of account making the deposit in the Bridge contract.
         @param data Consists of: {resourceID}, {lenMetaData}, and {metaData} all padded to 32 bytes.
         @notice Data passed into the function should be constructed as follows:
         len(data)                              uint256     bytes  0  - 32
@@ -159,25 +145,13 @@ contract GenericHandler is IGenericHandler {
         metadata = bytes(data[32:32 + lenMetadata]);
 
         address contractAddress = _resourceIDToContractAddress[resourceID];
-        uint256 depositerOffset = _contractAddressToDepositFunctionDepositerOffset[contractAddress];
-        if (depositerOffset > 0) {
-            uint256 metadataDepositer;
-            // Skipping 32 bytes of length prefix and depositerOffset bytes.
-            assembly {
-                metadataDepositer := mload(add(add(metadata, 32), depositerOffset))
-            }
-            // metadataDepositer contains 0xdepositerAddressdepositerAddressdeposite************************
-            // Shift it 12 bytes right:   0x000000000000000000000000depositerAddressdepositerAddressdeposite
-            require(depositer == address(metadataDepositer >> 96), 'incorrect depositer in the data');
-        }
-
         require(_contractWhitelist[contractAddress], "provided contractAddress is not whitelisted");
 
         bytes4 sig = _contractAddressToDepositFunctionSignature[contractAddress];
         if (sig != bytes4(0)) {
             bytes memory callData = abi.encodePacked(sig, metadata);
             (bool success,) = contractAddress.call(callData);
-            require(success, "call to contractAddress failed");
+            require(success, "delegatecall to contractAddress failed");
         }
 
         _depositRecords[destinationChainID][depositNonce] = DepositRecord(
@@ -220,13 +194,11 @@ contract GenericHandler is IGenericHandler {
         bytes32 resourceID,
         address contractAddress,
         bytes4 depositFunctionSig,
-        uint256 depositFunctionDepositerOffset,
         bytes4 executeFunctionSig
     ) internal {
         _resourceIDToContractAddress[resourceID] = contractAddress;
         _contractAddressToResourceID[contractAddress] = resourceID;
         _contractAddressToDepositFunctionSignature[contractAddress] = depositFunctionSig;
-        _contractAddressToDepositFunctionDepositerOffset[contractAddress] = depositFunctionDepositerOffset;
         _contractAddressToExecuteFunctionSignature[contractAddress] = executeFunctionSig;
 
         _contractWhitelist[contractAddress] = true;

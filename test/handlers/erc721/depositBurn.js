@@ -55,7 +55,7 @@ contract('ERC721Handler - [Deposit Burn ERC721]', async (accounts) => {
             BridgeInstance.adminSetResource(ERC721HandlerInstance.address, resourceID2, ERC721MintableInstance2.address),
         ]);
 
-        depositData = Helpers.createERCDepositData(tokenID, 20, recipientAddress);
+        depositData = Helpers.createERCDepositData(tokenID, 32, recipientAddress);
     });
 
     it('[sanity] burnableContractAddresses should be marked true in _burnList', async () => {
@@ -86,6 +86,6 @@ contract('ERC721Handler - [Deposit Burn ERC721]', async (accounts) => {
 
         await TruffleAssert.reverts(
             ERC721MintableInstance1.ownerOf(tokenID),
-            'ERC721: owner query for nonexistent token');
+            'ERC721: invalid token ID');
     });
 });

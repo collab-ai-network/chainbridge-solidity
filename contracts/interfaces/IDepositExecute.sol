@@ -1,4 +1,5 @@
-pragma solidity 0.6.12;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.19;
 
 /**
     @title Interface for handler contracts that support deposits and deposit executions.
