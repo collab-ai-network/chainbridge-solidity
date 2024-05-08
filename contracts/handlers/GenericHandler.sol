@@ -119,7 +119,7 @@ contract GenericHandler is IGenericHandler {
         address contractAddress,
         bytes4 depositFunctionSig,
         bytes4 executeFunctionSig
-    ) external onlyBridge override {
+    ) external onlyBridge {
 
         _setResource(resourceID, contractAddress, depositFunctionSig, executeFunctionSig);
     }
