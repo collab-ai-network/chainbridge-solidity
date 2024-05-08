@@ -106,7 +106,7 @@ contract('Bridge - [voteProposal with relayerThreshold == 3]', async (accounts) 
 
         await TruffleAssert.passes(vote(relayer3Address));
 
-        await TruffleAssert.reverts(vote(relayer4Address), 'proposal already passed/executed/cancelled.');
+        await TruffleAssert.reverts(vote(relayer4Address), 'proposal already passed/executed/cancelled');
     });
 
     it("depositProposal shouldn't be voted on if it has a Transferred status", async () => {
@@ -116,7 +116,7 @@ contract('Bridge - [voteProposal with relayerThreshold == 3]', async (accounts) 
 
         await TruffleAssert.passes(vote(relayer3Address));
 
-        await TruffleAssert.reverts(vote(relayer4Address), 'proposal already passed/executed/cancelled.');
+        await TruffleAssert.reverts(vote(relayer4Address), 'proposal already passed/executed/cancelled');
 
     });
 
@@ -165,17 +165,12 @@ contract('Bridge - [voteProposal with relayerThreshold == 3]', async (accounts) 
         assert.strictEqual(depositProposalAfterThirdVote._noVotes.length, 0);
         assert.strictEqual(depositProposalAfterThirdVote._status, '3');
 
-
-        // // TODO: Add the execution method/middle status passed test
-        // // We do not need this here since execution should be triggered after vote
-        // await TruffleAssert.passes(executeProposal(relayer1Address));
-
-        // const depositProposalAfterExecute = await BridgeInstance.getProposal(
-        //     originChainID, expectedDepositNonce, depositDataHash);
-        // assert.strictEqual(depositProposalAfterExecute._yesVotes.length, 3);
-        // assert.deepEqual(depositProposalAfterExecute._yesVotes, [relayer1Address, relayer2Address, relayer3Address]);
-        // assert.strictEqual(depositProposalAfterExecute._noVotes.length, 0);
-        // assert.strictEqual(depositProposalAfterExecute._status, '3');
+        const depositProposalAfterExecute = await BridgeInstance.getProposal(
+            originChainID, expectedDepositNonce, depositDataHash);
+        assert.strictEqual(depositProposalAfterExecute._yesVotes.length, 3);
+        assert.deepEqual(depositProposalAfterExecute._yesVotes, [relayer1Address, relayer2Address, relayer3Address]);
+        assert.strictEqual(depositProposalAfterExecute._noVotes.length, 0);
+        assert.strictEqual(depositProposalAfterExecute._status, '3');
     });
 
     it("Relayer's address should be marked as voted for proposal", async () => {
@@ -201,16 +196,6 @@ contract('Bridge - [voteProposal with relayerThreshold == 3]', async (accounts) 
         });
     });
 
-    it('DepositProposalVote event fired when proposal vote made', async () => {
-        const voteTx = await vote(relayer1Address);
-
-        TruffleAssert.eventEmitted(voteTx, 'ProposalVote', (event) => {
-            return event.originChainID.toNumber() === originChainID &&
-                event.depositNonce.toNumber() === expectedDepositNonce &&
-                event.status.toNumber() === 1
-        });
-    });
-
     it('Execution successful', async () => {
         await TruffleAssert.passes(vote(relayer1Address));
 
@@ -225,17 +210,5 @@ contract('Bridge - [voteProposal with relayerThreshold == 3]', async (accounts) 
                 event.resourceID === resourceID.toLowerCase() &&
                 event.dataHash === depositDataHash
         });
-
-        // // TODO: Add the execution method/middle status passed test
-        // // We do not need this here since execution should be triggered after vote
-        // const executionTx = await executeProposal(relayer1Address)
-
-        // TruffleAssert.eventEmitted(executionTx, 'ProposalEvent', (event) => {
-        //     return event.originChainID.toNumber() === originChainID &&
-        //     event.depositNonce.toNumber() === expectedDepositNonce &&
-        //     event.status.toNumber() === expectedExecutedEventStatus &&
-        //     event.resourceID === resourceID.toLowerCase() &&
-        //     event.dataHash === depositDataHash
-        // });
     });
 });

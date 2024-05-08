@@ -86,6 +86,6 @@ contract('ERC721Handler - [Deposit Burn ERC721]', async (accounts) => {
 
         await TruffleAssert.reverts(
             ERC721MintableInstance1.ownerOf(tokenID),
-            'ERC721: owner query for nonexistent token');
+            'ERC721: invalid token ID');
     });
 });

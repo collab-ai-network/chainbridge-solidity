@@ -196,7 +196,7 @@ contract('Bridge - [create a deposit proposal (voteProposal) with relayerThresho
             depositAmount,
             32,
             destinationRecipientAddress);
-        dataHash = Ethers.utils.keccak256(data);
+        dataHash = Ethers.utils.keccak256(DestinationERC20HandlerInstance.address + data.substr(2));
     });
 
     it('should create depositProposal successfully', async () => {

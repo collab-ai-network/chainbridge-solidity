@@ -90,17 +90,6 @@ contract('GenericHandler - [Execute Proposal]', async (accounts) => {
             depositData,
             { from: relayer2Address }
         ));
-
-        // // TODO: Add the execution method test
-        // // We do not need this here since execution should be triggered after vote
-        // // relayer1 will execute the deposit proposal
-        // TruffleAssert.passes(await BridgeInstance.executeProposal(
-        //     chainID,
-        //     expectedDepositNonce,
-        //     depositData,
-        //     resourceID,
-        //     { from: relayer2Address }
-        // ));
         
         // Verifying asset was marked as stored in CentrifugeAssetInstance
         assert.isTrue(await CentrifugeAssetInstance._assetsStored.call(hashOfCentrifugeAsset));
@@ -133,17 +122,6 @@ contract('GenericHandler - [Execute Proposal]', async (accounts) => {
             depositData,
             { from: relayer2Address }
         );
-
-        // // TODO: Add the execution method test
-        // // We do not need this here since execution should be triggered after vote
-        // // relayer1 will execute the deposit proposal
-        // const executeProposalTx = await BridgeInstance.executeProposal(
-        //     chainID,
-        //     expectedDepositNonce,
-        //     depositData,
-        //     resourceID,
-        //     { from: relayer2Address }
-        // );
 
         const internalTx = await TruffleAssert.createTransactionResult(CentrifugeAssetInstance, executeProposalTx.tx);
         TruffleAssert.eventEmitted(internalTx, 'AssetStored', event => {

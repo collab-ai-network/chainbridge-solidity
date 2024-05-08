@@ -1,6 +1,6 @@
-pragma solidity 0.7.0;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.19;
 
-import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "./ERC721MinterBurnerPauser.sol";
 
@@ -10,7 +10,6 @@ import "./ERC721MinterBurnerPauser.sol";
     @notice This contract is intended to be used with ERC721Handler contract.
  */
 contract ERC721Safe {
-    using SafeMath for uint256;
 
     /**
         @notice Used to transfer tokens into the safe to fund proposals.

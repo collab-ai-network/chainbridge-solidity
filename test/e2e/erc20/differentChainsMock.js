@@ -81,11 +81,11 @@ contract('E2E ERC20 - Two EVM Chains', async accounts => {
             DestinationBridgeInstance.adminSetResource(DestinationERC20HandlerInstance.address, destinationResourceID, DestinationERC20MintableInstance.address)
         ]);
 
-        originDepositData = Helpers.createERCDepositData(depositAmount, 32, recipientAddress);
+        originDepositData = Helpers.createERCDepositData(depositAmount, 32, recipientAddress); // Used for account address like substrate
         originDepositProposalData = Helpers.createERCDepositData(depositAmount, 20, recipientAddress);
         originDepositProposalDataHash = Ethers.utils.keccak256(DestinationERC20HandlerInstance.address + originDepositProposalData.substr(2));
         
-        destinationDepositData = Helpers.createERCDepositData(depositAmount, 32, depositerAddress);
+        destinationDepositData = Helpers.createERCDepositData(depositAmount, 32, depositerAddress); // Used for account address like substrate
         destinationDepositProposalData = Helpers.createERCDepositData(depositAmount, 20, depositerAddress);
         destinationDepositProposalDataHash = Ethers.utils.keccak256(OriginERC20HandlerInstance.address + destinationDepositProposalData.substr(2));
     });
@@ -113,7 +113,7 @@ contract('E2E ERC20 - Two EVM Chains', async accounts => {
         TruffleAssert.passes(await OriginBridgeInstance.deposit(
             destinationChainID,
             originResourceID,
-            originDepositData,
+            originDepositProposalData,
             { from: depositerAddress }
         ));
 
@@ -138,19 +138,6 @@ contract('E2E ERC20 - Two EVM Chains', async accounts => {
             { from: destinationRelayer2Address }
         ));
 
-
-        // // TODO: Add the execution method/middle status passed test
-        // // We do not need this here since execution should be triggered after vote
-        // // destinationRelayer1 will execute the deposit proposal
-        // TruffleAssert.passes(await DestinationBridgeInstance.executeProposal(
-        //     originChainID,
-        //     expectedDepositNonce,
-        //     originDepositProposalData,
-        //     destinationResourceID,
-        //     { from: destinationRelayer2Address }
-        // ));
-
-
         // Assert ERC20 balance was transferred from depositerAddress
         depositerBalance = await OriginERC20MintableInstance.balanceOf(depositerAddress);
         assert.strictEqual(depositerBalance.toNumber(), initialTokenAmount - depositAmount, "depositAmount wasn't transferred from depositerAddress");
@@ -171,7 +158,7 @@ contract('E2E ERC20 - Two EVM Chains', async accounts => {
         TruffleAssert.passes(await DestinationBridgeInstance.deposit(
             originChainID,
             destinationResourceID,
-            destinationDepositData,
+            destinationDepositProposalData,
             { from: recipientAddress }
         ));
 
@@ -184,7 +171,7 @@ contract('E2E ERC20 - Two EVM Chains', async accounts => {
             destinationChainID,
             expectedDepositNonce,
             originResourceID,
-            originDepositProposalData,
+            destinationDepositProposalData,
             { from: originRelayer1Address }
         ));
 
@@ -195,20 +182,9 @@ contract('E2E ERC20 - Two EVM Chains', async accounts => {
             destinationChainID,
             expectedDepositNonce,
             originResourceID,
-            originDepositProposalData,
+            destinationDepositProposalData,
             { from: originRelayer2Address }
         ));
-
-        // // TODO: Add the execution method/middle status passed test
-        // // We do not need this here since execution should be triggered after vote
-        // // destinationRelayer1 will execute the deposit proposal
-        // TruffleAssert.passes(await OriginBridgeInstance.executeProposal(
-        //     destinationChainID,
-        //     expectedDepositNonce,
-        //     destinationDepositProposalData,
-        //     originResourceID,
-        //     { from: originRelayer2Address }
-        // ));
 
         // Assert ERC20 balance was transferred from recipientAddress
         recipientBalance = await DestinationERC20MintableInstance.balanceOf(recipientAddress);

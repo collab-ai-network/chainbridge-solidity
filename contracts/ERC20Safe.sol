@@ -1,9 +1,9 @@
-pragma solidity 0.7.0;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.19;
 
-import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/presets/ERC20PresetMinterPauser.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol";
+import "@openzeppelin/contracts/token/ERC20/presets/ERC20PresetMinterPauser.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
 /**
     @title Manages deposited ERC20s.
@@ -11,7 +11,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol";
     @notice This contract is intended to be used with ERC20Handler contract.
  */
 contract ERC20Safe {
-    using SafeMath for uint256;
 
     /**
         @notice Used to transfer tokens into the safe to fund proposals.

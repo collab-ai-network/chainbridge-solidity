@@ -1,8 +1,7 @@
-pragma solidity 0.7.0;
-pragma experimental ABIEncoderV2;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.19;
 
 import "../interfaces/IGenericHandler.sol";
-
 /**
     @title Handles generic deposits and deposit executions.
     @author ChainSafe Systems.
@@ -41,7 +40,7 @@ contract GenericHandler is IGenericHandler {
         _;
     }
 
-    function _onlyBridge() private {
+    function _onlyBridge() private view {
          require(msg.sender == _bridgeAddress, "sender must be bridge contract");
     }
 
@@ -68,7 +67,7 @@ contract GenericHandler is IGenericHandler {
         address[] memory initialContractAddresses,
         bytes4[]  memory initialDepositFunctionSignatures,
         bytes4[]  memory initialExecuteFunctionSignatures
-    ) public {
+    ) {
         require(initialResourceIDs.length == initialContractAddresses.length,
             "initialResourceIDs and initialContractAddresses len mismatch");
 
@@ -150,7 +149,7 @@ contract GenericHandler is IGenericHandler {
 
         bytes4 sig = _contractAddressToDepositFunctionSignature[contractAddress];
         if (sig != bytes4(0)) {
-            bytes memory callData = abi.encodeWithSelector(sig, metadata);
+            bytes memory callData = abi.encodePacked(sig, metadata);
             (bool success,) = contractAddress.call(callData);
             require(success, "delegatecall to contractAddress failed");
         }
@@ -185,7 +184,7 @@ contract GenericHandler is IGenericHandler {
 
         bytes4 sig = _contractAddressToExecuteFunctionSignature[contractAddress];
         if (sig != bytes4(0)) {
-            bytes memory callData = abi.encodeWithSelector(sig, metaData);
+            bytes memory callData = abi.encodePacked(sig, metaData);
             (bool success,) = contractAddress.call(callData);
             require(success, "delegatecall to contractAddress failed");
         }

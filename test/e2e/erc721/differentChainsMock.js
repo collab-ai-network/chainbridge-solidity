@@ -106,7 +106,7 @@ contract('E2E ERC721 - Two EVM Chains', async accounts => {
         TruffleAssert.passes(await OriginBridgeInstance.deposit(
             destinationChainID,
             originResourceID,
-            originDepositData,
+            originDepositProposalData,
             {from: depositerAddress}
         ));
 
@@ -134,17 +134,6 @@ contract('E2E ERC721 - Two EVM Chains', async accounts => {
             {from: destinationRelayer2Address}
         ));
 
-        // // TODO: Add the execution method/middle status passed test
-        // // We do not need this here since execution should be triggered after vote
-        // // destinationRelayer1 will execute the deposit proposal
-        // TruffleAssert.passes(await DestinationBridgeInstance.executeProposal(
-        //     originChainID,
-        //     expectedDepositNonce,
-        //     originDepositProposalData,
-        //     destinationResourceID,
-        //     {from: destinationRelayer2Address}
-        // ));
-
         // Handler should still own tokenID of OriginERC721MintableInstance
         tokenOwner = await OriginERC721MintableInstance.ownerOf(tokenID);
         assert.strictEqual(OriginERC721HandlerInstance.address, tokenOwner, 'OriginERC721HandlerInstance.address does not own tokenID');
@@ -163,12 +152,12 @@ contract('E2E ERC721 - Two EVM Chains', async accounts => {
         TruffleAssert.passes(await DestinationBridgeInstance.deposit(
             originChainID,
             destinationResourceID,
-            destinationDepositData,
+            destinationDepositProposalData,
             {from: recipientAddress}
         ));
 
         // Token should no longer exist
-        TruffleAssert.reverts(DestinationERC721MintableInstance.ownerOf(tokenID), "ERC721: owner query for nonexistent token")
+        TruffleAssert.reverts(DestinationERC721MintableInstance.ownerOf(tokenID), "ERC721: invalid token ID")
 
         // destinationRelayer1 creates the deposit proposal
         TruffleAssert.passes(await OriginBridgeInstance.voteProposal(
@@ -190,19 +179,8 @@ contract('E2E ERC721 - Two EVM Chains', async accounts => {
             {from: originRelayer2Address}
         ));
 
-        // // TODO: Add the execution method/middle status passed test
-        // // We do not need this here since execution should be triggered after vote
-        // // destinationRelayer1 will execute the deposit proposal
-        // TruffleAssert.passes(await OriginBridgeInstance.executeProposal(
-        //     destinationChainID,
-        //     expectedDepositNonce,
-        //     destinationDepositProposalData,
-        //     originResourceID,
-        //     {from: originRelayer2Address}
-        // ));
-
         // Assert Destination tokenID no longer exists
-        TruffleAssert.reverts(DestinationERC721MintableInstance.ownerOf(tokenID), "ERC721: owner query for nonexistent token")
+        TruffleAssert.reverts(DestinationERC721MintableInstance.ownerOf(tokenID), "ERC721: invalid token ID")
 
         // Assert DestinationERC721MintableInstance tokenID was transferred to recipientAddress
         tokenOwner = await OriginERC721MintableInstance.ownerOf(tokenID);

@@ -24,7 +24,7 @@ contract('Gas Benchmark - [Execute Proposal]', async (accounts) => {
     const relayerAddress = accounts[0];
     const depositerAddress = accounts[1];
     const recipientAddress = accounts[2];
-    const lenRecipientAddress = 32;
+    const lenRecipientAddress = 20;
     const gasBenchmarks = [];
 
     const initialRelayers = [relayerAddress];
@@ -96,16 +96,16 @@ contract('Gas Benchmark - [Execute Proposal]', async (accounts) => {
             ThreeArgumentsInstance.address];
         const genericInitialDepositFunctionSignatures = [
             Helpers.blankFunctionSig,
-            Helpers.getFunctionSignature(NoArgumentInstance, 'noArgument'),
-            Helpers.getFunctionSignature(OneArgumentInstance, 'oneArgument'),
-            Helpers.getFunctionSignature(TwoArgumentsInstance, 'twoArguments'),
-            Helpers.getFunctionSignature(ThreeArgumentsInstance, 'threeArguments')];
-        const genericInitialExecuteFunctionSignatures = [
-            Helpers.getFunctionSignature(CentrifugeAssetInstance, 'store'),
             Helpers.blankFunctionSig,
             Helpers.blankFunctionSig,
             Helpers.blankFunctionSig,
             Helpers.blankFunctionSig];
+        const genericInitialExecuteFunctionSignatures = [
+            Helpers.getFunctionSignature(CentrifugeAssetInstance, 'store'),
+            Helpers.getFunctionSignature(NoArgumentInstance, 'noArgument'),
+            Helpers.getFunctionSignature(OneArgumentInstance, 'oneArgument'),
+            Helpers.getFunctionSignature(TwoArgumentsInstance, 'twoArguments'),
+            Helpers.getFunctionSignature(ThreeArgumentsInstance, 'threeArguments')];
 
         await Promise.all([
             ERC20HandlerContract.new(BridgeInstance.address, erc20InitialResourceIDs, erc20InitialContractAddresses, erc20BurnableContractAddresses).then(instance => ERC20HandlerInstance = instance),
@@ -137,8 +137,9 @@ contract('Gas Benchmark - [Execute Proposal]', async (accounts) => {
         const depositDataHash = Ethers.utils.keccak256(ERC20HandlerInstance.address + depositData.substr(2));
 
         await deposit(erc20ResourceID, depositData);
-        await vote(erc20ResourceID, depositNonce, depositDataHash, relayerAddress);
-
+        await ERC20MintableInstance.pause();
+        await vote(erc20ResourceID, depositNonce, depositData, relayerAddress);
+        await ERC20MintableInstance.unpause();
         const executeTx = await execute(depositNonce, depositData, erc20ResourceID);
 
         gasBenchmarks.push({
@@ -160,7 +161,9 @@ contract('Gas Benchmark - [Execute Proposal]', async (accounts) => {
         const depositDataHash = Ethers.utils.keccak256(ERC721HandlerInstance.address + depositData.substr(2));
 
         await deposit(erc721ResourceID, depositData);
-        await vote(erc721ResourceID, depositNonce, depositDataHash, relayerAddress);
+        await ERC721MintableInstance.pause();
+        await vote(erc721ResourceID, depositNonce, depositData, relayerAddress);
+        await ERC721MintableInstance.unpause();
 
         const executeTx = await execute(depositNonce, depositData, erc721ResourceID);
 
@@ -176,8 +179,9 @@ contract('Gas Benchmark - [Execute Proposal]', async (accounts) => {
         const depositData = Helpers.createGenericDepositData(hashOfCentrifugeAsset);
         const depositDataHash = Ethers.utils.keccak256(GenericHandlerInstance.address + depositData.substr(2));
 
-        await deposit(centrifugeAssetResourceID, depositData);
-        await vote(centrifugeAssetResourceID, depositNonce, depositDataHash, relayerAddress);
+        await CentrifugeAssetInstance.pause();
+        await vote(centrifugeAssetResourceID, depositNonce, depositData, relayerAddress);
+        await CentrifugeAssetInstance.unpause();
 
         const executeTx = await execute(depositNonce, depositData, centrifugeAssetResourceID);
 
@@ -193,8 +197,9 @@ contract('Gas Benchmark - [Execute Proposal]', async (accounts) => {
 
         const depositDataHash = Ethers.utils.keccak256(GenericHandlerInstance.address + depositData.substr(2));
 
-        await deposit(noArgumentResourceID, depositData);
-        await vote(noArgumentResourceID, depositNonce, depositDataHash, relayerAddress);
+        await NoArgumentInstance.pause();
+        await vote(noArgumentResourceID, depositNonce, depositData, relayerAddress);
+        await NoArgumentInstance.unpause();
 
         const executeTx = await execute(depositNonce, depositData, noArgumentResourceID);
 
@@ -209,8 +214,9 @@ contract('Gas Benchmark - [Execute Proposal]', async (accounts) => {
         const depositData = Helpers.createGenericDepositData(Helpers.toHex(42, 32));
         const depositDataHash = Ethers.utils.keccak256(GenericHandlerInstance.address + depositData.substr(2));
 
-        await deposit(oneArgumentResourceID, depositData);
-        await vote(oneArgumentResourceID, depositNonce, depositDataHash, relayerAddress);
+        await OneArgumentInstance.pause();
+        await vote(oneArgumentResourceID, depositNonce, depositData, relayerAddress);
+        await OneArgumentInstance.unpause();
 
         const executeTx = await execute(depositNonce, depositData, oneArgumentResourceID);
 
@@ -228,8 +234,9 @@ contract('Gas Benchmark - [Execute Proposal]', async (accounts) => {
         const depositData = Helpers.createGenericDepositData(encodedMetaData);
         const depositDataHash = Ethers.utils.keccak256(GenericHandlerInstance.address + depositData.substr(2));
 
-        await deposit(twoArgumentsResourceID, depositData);
-        await vote(twoArgumentsResourceID, depositNonce, depositDataHash, relayerAddress);
+        await TwoArgumentsInstance.pause();
+        await vote(twoArgumentsResourceID, depositNonce, depositData, relayerAddress);
+        await TwoArgumentsInstance.unpause();
 
         const executeTx = await execute(depositNonce, depositData, twoArgumentsResourceID);
 
@@ -248,8 +255,9 @@ contract('Gas Benchmark - [Execute Proposal]', async (accounts) => {
         const depositData = Helpers.createGenericDepositData(encodedMetaData);
         const depositDataHash = Ethers.utils.keccak256(GenericHandlerInstance.address + depositData.substr(2));
 
-        await deposit(threeArgumentsResourceID, depositData);
-        await vote(threeArgumentsResourceID, depositNonce, depositDataHash, relayerAddress);
+        await ThreeArgumentsInstance.pause();
+        await vote(threeArgumentsResourceID, depositNonce, depositData, relayerAddress);
+        await ThreeArgumentsInstance.unpause();
 
         const executeTx = await execute(depositNonce, depositData, threeArgumentsResourceID);
 

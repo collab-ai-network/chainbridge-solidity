@@ -70,7 +70,7 @@ contract('GenericHandler - [constructor]', async () => {
                 "initialResourceIDs and initialContractAddresses len mismatch");
     });
 
-    it('should revert because provided contract addresses and function signatures len mismatch.', async () => {
+    it('should revert because provided contract addresses and function signatures len mismatch', async () => {
         await TruffleAssert.reverts(
             GenericHandlerContract.new(
                 BridgeInstance.address,
@@ -78,7 +78,7 @@ contract('GenericHandler - [constructor]', async () => {
                 initialContractAddresses,
                 [],
                 initialExecuteFunctionSignatures),
-                "provided contract addresses and function signatures len mismatch.");
+                "provided contract addresses and function signatures len mismatch");
     });
 
     it('should revert because provided deposit and execute function signatures len mismatch', async () => {
