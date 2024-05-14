@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
-import "@openzeppelin/contracts/security/Pausable.sol";
+import "./openzeppelin/AccessControlEnumerable.sol";
+import "./openzeppelin/Pausable.sol";
 import "./interfaces/IDepositExecute.sol";
 import "./interfaces/IBridge.sol";
 import "./interfaces/IERCHandler.sol";
