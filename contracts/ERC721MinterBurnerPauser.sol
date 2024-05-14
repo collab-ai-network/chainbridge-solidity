@@ -3,13 +3,13 @@ pragma solidity 0.8.19;
 
 // This is adapted from https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.0/contracts/token/ERC721/presets/ERC721PresetMinterPauserAutoId.sol
 
-import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
-import "@openzeppelin/contracts/utils/Context.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "./openzeppelin/AccessControlEnumerable.sol";
+import "./openzeppelin/Context.sol";
+import "./openzeppelin/Counters.sol";
+import "./openzeppelin/ERC721.sol";
+import "./openzeppelin/ERC721Burnable.sol";
+import "./openzeppelin/ERC721Pausable.sol";
+import "./openzeppelin/ERC721URIStorage.sol";
 
 
 contract ERC721MinterBurnerPauser is Context, AccessControlEnumerable, ERC721Burnable, ERC721Pausable, ERC721URIStorage {

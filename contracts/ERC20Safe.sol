@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/presets/ERC20PresetMinterPauser.sol";
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import "./openzeppelin/IERC20.sol";
+import "./openzeppelin/ERC20PresetMinterPauser.sol";
+import "./openzeppelin/ERC20Burnable.sol";
 
 /**
     @title Manages deposited ERC20s.
